@@ -30,7 +30,8 @@ const styles = {
     colors:{
         snow: '#F1F1FF',
         sapphire: '#3657C0',
-        twilight: '#7A4973',
+        navy:'#233980',
+        twilight: '#4A4973',
         lavenderGrey: '#7C7C9F',
         lavender: '#AEAED4',
         deepNavy: '#2A2A40',

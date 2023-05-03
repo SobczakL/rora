@@ -5,16 +5,22 @@ import Login from './pages/login/Login'
 import Home from './pages/home/Home'
 import UserProfile from './pages/userProfile/UserProfile'
 import Footer from './components/footer/Footer'
+import '../src/assets/fonts/fonts.css'
+
 function App() {
 
   return (
     <>
       <ChakraProvider theme={overrides}>
-        <Box
-          bg="lavender"
-          h='100px'
-          w='100px'
-          pb={{ sm: "40px", lg: "48px" }}
+        <Box 
+          bg="deepNavy" 
+          minH='100vh'
+          minW='100vw'
+          boxSizing='border-box'
+          overflow='hidden'
+          px='24px'
+          py='24px'
+          pb='10vh'
         >
           <BrowserRouter>
             <Routes>

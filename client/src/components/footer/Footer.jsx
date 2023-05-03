@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Text } from "@chakra-ui/react"
 
 function Footer() {
     return (
@@ -15,7 +15,9 @@ function Footer() {
         w="100%"
         pt="40px"
         >
+            <Text maxW='fit-content'>
             © Röra Inc. All Rights Reserved.
+            </Text>
         </Box>
     )
 }
