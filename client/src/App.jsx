@@ -29,9 +29,9 @@ function App() {
               <Route path='/home/user' element={<UserProfile />} />
               <Route path='/home/route/:id' element={<Route />} />
             </Routes>
-            <Footer/>
           </BrowserRouter>
         </Box>
+        <Footer/>
       </ChakraProvider>
     </>
   )

@@ -6,6 +6,7 @@ function SecondaryButton({innerText, onClick, isActive}) {
         onClick={onClick}
         display='flex'
         alignItems='center'
+        w='100%'
         px='40px'
         py='9px'
         borderRadius='20px'

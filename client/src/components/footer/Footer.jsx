@@ -12,10 +12,10 @@ function Footer() {
         align="center"
         pos="absolute"
         bottom="0"
-        w="100%"
         pt="40px"
+        w='100%'
         >
-            <Text maxW='fit-content'>
+            <Text w='100%'>
             © Röra Inc. All Rights Reserved.
             </Text>
         </Box>

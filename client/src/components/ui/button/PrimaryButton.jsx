@@ -1,11 +1,13 @@
-import {Button} from '@chakra-ui/react'
+import {Button, Img} from '@chakra-ui/react'
 
-function PrimaryButton({innerText, onClick, isActive}) {
+function PrimaryButton({innerText, onClick, isActive, icon}) {
     return (
         <Button
         onClick={onClick}
+        position='relative'
         display='flex'
-        alignItems='center'
+        align='center'
+        w='100%'
         px='40px'
         py='9px'
         borderRadius='20px'
@@ -17,7 +19,14 @@ function PrimaryButton({innerText, onClick, isActive}) {
         borderColor='lavender'
         _hover={isActive? {bg: 'navy'} : {bg:'lavenderGrey'}}
         >
-            {innerText}
+            {innerText}{icon ?
+                <Img 
+                position='absolute'
+                right='16px'
+                src={icon} 
+                ml='8px' 
+                maxW='20px' 
+                /> : ''}
         </Button>
     )
 }
