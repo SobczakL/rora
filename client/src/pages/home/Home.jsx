@@ -33,7 +33,7 @@ function Home() {
     position='relative'
     overflow='hidden'
     direction='column'
-    minH='80vh'
+    minH='90vh'
     zIndex='1'
     >
       <UserProfileContainer userImg={user3}/>
@@ -50,6 +50,7 @@ function Home() {
       initial={cardListVisible ? 'visible' : 'hidden'}
       animate={cardListVisible ? 'visible' : 'hidden'}
       pointerEvents={cardListVisible ? "none" : "auto"}
+      h='100%'
       >
         <RouteSearchPanel />
         <RouteCardList 
