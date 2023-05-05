@@ -1,6 +1,6 @@
 import UserProfileContainer from "../../components/userProlileContainer/UserProfileContainer"
 import user3 from '../../assets/images/user3.jpg'
-import { Flex } from "@chakra-ui/react"
+import { Flex, Square, VisuallyHidden } from "@chakra-ui/react"
 import { motion } from 'framer-motion'
 import MainHeader from "../../components/mainHeader/MainHeader"
 import RouteSearchPanel from "../../components/routeSearchPanel/RouteSearchPanel"
@@ -34,10 +34,14 @@ function Home() {
     overflow='hidden'
     direction='column'
     minH='80vh'
-    onClick={handleReset}
+    zIndex='1'
     >
       <UserProfileContainer userImg={user3}/>
       <MainHeader />
+      <Square h='400px' w='100%' onClick={handleReset} bg='twilight' position='absolute' zIndex='-1'>
+        Google map placeholder
+      </Square>
+
       <Flex
       direction='column'
       as={motion.div}
@@ -45,6 +49,7 @@ function Home() {
       variants={cardListVariants}
       initial={cardListVisible ? 'visible' : 'hidden'}
       animate={cardListVisible ? 'visible' : 'hidden'}
+      pointerEvents={cardListVisible ? "none" : "auto"}
       >
         <RouteSearchPanel />
         <RouteCardList 
