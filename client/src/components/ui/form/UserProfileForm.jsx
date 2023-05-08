@@ -2,10 +2,12 @@ import { Divider, Flex, FormControl, VStack, Img, Box } from "@chakra-ui/react";
 import UserInput from "../input/UserInput";
 import ChangePassButton from "../button/ChangePassButton";
 import RoraCard from '../../../assets/images/roraCard.svg'
+import SaveButton from "../button/SaveButton";
 
 function UserProfileForm(){
     return (
-        <FormControl>
+        <FormControl
+        >
             <VStack
             gap='4px'
             >
@@ -40,6 +42,7 @@ function UserProfileForm(){
                 h='200px'
                 />
             </VStack>
+            <SaveButton />
         </FormControl>
     )
 }

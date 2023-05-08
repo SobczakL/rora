@@ -6,7 +6,8 @@ import UserProfileForm from '../../components/ui/form/UserProfileForm'
 function UserProfile() {
   return (
     <Flex
-    position='relative'
+    // position='relative'
+    // zIndex='0'
     overflow='hidden'
     direction='column'
     minH='90vh'
@@ -18,7 +19,6 @@ function UserProfile() {
       justify='space-between'
       >
         <ChevronLeftIcon boxSize='32px' color='snow'/>
-        <SaveButton />
       </Flex>
       <UserProfileForm />
     </Flex>
