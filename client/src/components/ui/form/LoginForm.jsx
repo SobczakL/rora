@@ -5,7 +5,7 @@ import axios from 'axios'
 import { baseURL } from "../../../services/baseURL"
 import LoginButton from "../button/LoginButton"
 
-function LoginForm() {
+function LoginForm({handleVerifyUser}) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -36,7 +36,8 @@ function LoginForm() {
         .finally(() =>{
         setTimeout(() =>{
             setIsLoading(false);
-        }, 2000)
+            handleVerifyUser()
+        }, 4000)
         })
     }
     return (
