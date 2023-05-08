@@ -1,12 +1,13 @@
 import {Button} from '@chakra-ui/react'
 
-function ChangePass({ onClick }) {
+function ChangePassButton({ onClick }) {
     return (
         <Button
         onClick={onClick}
         display='flex'
         alignItems='center'
-        px='40px'
+        maxW='fit-content'
+        px='25px'
         py='9px'
         color='snow'
         bg='lavenderGrey'
@@ -20,4 +21,4 @@ function ChangePass({ onClick }) {
     )
 }
 
-export default ChangePass;
+export default ChangePassButton;

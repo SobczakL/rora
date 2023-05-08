@@ -3,14 +3,14 @@ import SearchInput from "../ui/input/SearchInput"
 import PrimaryButton from '../ui/button/PrimaryButton'
 import SecondaryButton from '../ui/button/SecondaryButton'
 import locationIcon from '../../assets/icons/location.svg'
-function RouteSearchPanel() {
+function RouteSearchPanel({onClick}) {
     return (
         <Flex
         direction='column'
         gap='16px'
         w='100%'
         >
-            <SearchInput />
+            <SearchInput onClick={onClick}/>
             <Flex
             gap='16px'
             px='24px'

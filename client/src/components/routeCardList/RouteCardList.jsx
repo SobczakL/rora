@@ -1,14 +1,40 @@
-import { StackDivider, VStack } from "@chakra-ui/react"
+import { Flex, VStack } from "@chakra-ui/react"
+import RouteSearchPanel from "../routeSearchPanel/RouteSearchPanel";
+import { motion } from "framer-motion";
+import RouteCard from "../routeCard/RouteCard";
+function RouteCardList({handleFocus, cardListVisible}) {
 
-function RouteCardList({children}) {
+    const cardListVariants = {
+        visible: { y: '10vh', transition: { duration: 0.5 } },
+        hidden: { y: '45vh' }
+    };
+    
+    const onFocus = () => {
+        handleFocus();
+    }
+
     return (
-        <VStack
-        mt='16px'
-        spacing='2px'
-        w='100%'
+        <Flex
+        direction='column'
+        as={motion.div}
+        variants={cardListVariants}
+        initial={cardListVisible ? 'visible' : 'hidden'}
+        animate={cardListVisible ? 'visible' : 'hidden'}
+        pointerEvents={cardListVisible ? "none" : "auto"}
+        h='100%'
         >
-            {children}
-        </VStack>
+            <RouteSearchPanel onClick={onFocus}/>
+            <VStack
+            mt='16px'
+            spacing='2px'
+            w='100%'
+            >
+                <RouteCard />
+                <RouteCard />
+                <RouteCard />
+                <RouteCard />
+            </VStack>
+        </Flex>
     )
 }
 

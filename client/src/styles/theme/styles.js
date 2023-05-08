@@ -37,7 +37,7 @@ const styles = {
         deepNavy: '#2A2A40',
         sunrise: '#F3A400',
         crimson: '#D11547',
-        dartTangerine: '#CF8C00',
+        darkTangerine: '#CF8C00',
         carmine: '#A00F36'
     }
 };

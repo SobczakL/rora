@@ -1,23 +1,20 @@
 import UserProfileContainer from "../../components/userProlileContainer/UserProfileContainer"
 import user3 from '../../assets/images/user3.jpg'
-import { Flex, Square, VisuallyHidden } from "@chakra-ui/react"
-import { motion } from 'framer-motion'
+import { Flex, Square, Box } from "@chakra-ui/react"
 import MainHeader from "../../components/mainHeader/MainHeader"
-import RouteSearchPanel from "../../components/routeSearchPanel/RouteSearchPanel"
 import RouteCardList from "../../components/routeCardList/RouteCardList"
-import RouteCard from "../../components/routeCard/RouteCard"
 import { useState } from "react"
+import { CloseIcon } from "@chakra-ui/icons"
+import { useNavigate } from "react-router-dom"
 
 
 function Home() {
-  const cardListVariants = {
-    visible: { y: '10vh', transition: { duration: 0.5 } },
-    hidden: { y: '45vh' }
-  };
+
+  const navigate = useNavigate()
 
   const [cardListVisible, setCardListVisible] = useState(false);
 
-  const handleClick = () => {
+  const handleFocus = () => {
     setCardListVisible(!cardListVisible);
   }
 
@@ -27,6 +24,9 @@ function Home() {
     }
   }
 
+  const handleNavigate = () => {
+    navigate('/home/user')
+  }
 
   return (
     <Flex
@@ -36,34 +36,22 @@ function Home() {
     minH='90vh'
     zIndex='1'
     >
-      <UserProfileContainer userImg={user3}/>
+      <UserProfileContainer userImg={user3} handleNavigate={handleNavigate}/>
       <MainHeader />
-      <Square h='400px' w='100%' onClick={handleReset} bg='twilight' position='absolute' zIndex='-1'>
+      <Box
+      position='absolute'
+      onClick={handleReset}
+      display={cardListVisible ? 'block' : 'none'}
+      w='85%'
+      h='10vh'
+      p='8px'
+      >
+        <CloseIcon color='snow'/>
+      </Box>
+      <Square h='400px' w='100%'bg='twilight' position='absolute' zIndex='-1'>
         Google map placeholder
       </Square>
-
-      <Flex
-      direction='column'
-      as={motion.div}
-      onClick={handleClick}
-      variants={cardListVariants}
-      initial={cardListVisible ? 'visible' : 'hidden'}
-      animate={cardListVisible ? 'visible' : 'hidden'}
-      pointerEvents={cardListVisible ? "none" : "auto"}
-      h='100%'
-      >
-        <RouteSearchPanel />
-        <RouteCardList 
-        children={
-          <>
-          <RouteCard />
-          <RouteCard />
-          <RouteCard />
-          <RouteCard />
-          </>
-        }
-        />
-      </Flex>
+        <RouteCardList  handleFocus={handleFocus} cardListVisible={cardListVisible}/>
     </Flex>
   )
 }

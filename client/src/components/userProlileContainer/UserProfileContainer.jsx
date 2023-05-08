@@ -2,9 +2,10 @@ import {Box, Flex, Img } from '@chakra-ui/react'
 import dots from '../../assets/images/dots.svg'
 import { SettingsIcon } from '@chakra-ui/icons'
 
-function UserProfileContainer({userImg}) {
+function UserProfileContainer({userImg, handleNavigate}) {
     return (
         <Box 
+        onClick={handleNavigate}
         position='absolute'
         right='0'
         maxW='55px'
