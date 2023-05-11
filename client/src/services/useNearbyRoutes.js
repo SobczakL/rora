@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { baseURL } from "./config"
+import { serverURL } from "./config"
 
 function useNearbyRoutes(){
     const [data, setData] = useState(null)
@@ -9,22 +9,17 @@ function useNearbyRoutes(){
 
     const userLocation = JSON.parse(localStorage.getItem('location'))
 
-    let number = 0
     useEffect(() => {
         setLoading(true);
         axios
-            .post(`http://localhost:8080/home`,{
+            .post(`${serverURL}/home`,{
                 lat: userLocation.latitude,
                 lon: userLocation.longitude
             })
             .then((response) => {
-                console.log(response.data);
                 setData(response.data);
-                number ++
-                console.log(number)
             })
             .catch((error) => {
-                console.log(error)
                 setError(error);
             })
             .finally(() => {
@@ -32,7 +27,6 @@ function useNearbyRoutes(){
             });
         }, []);
     
-        return { data, loading, error };
-    }
-    
-    export default useNearbyRoutes;
+    return { data, loading, error };
+}
+export default useNearbyRoutes;

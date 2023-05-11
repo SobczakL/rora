@@ -15,11 +15,6 @@ function Home() {
 
   const { data, loading, error} = useNearbyRoutes()
 
-
-  if(data){
-    console.log(data)
-
-  }
   const [cardListVisible, setCardListVisible] = useState(false);
 
   const handleFocus = () => {
@@ -36,37 +31,48 @@ function Home() {
     navigate('/home/user')
   }
 
+  if(error){
+    console.log(error)
+  }
+
+  if(loading){
+    return (<h1>Loading ...</h1>)
+  }
+
+  if(data){
+    console.log(data)
+  }
+
   return (
-    <Skeleton
-    startColor='darkNavy'
-    endColor='twilight' 
-    isLoaded={isLoading}
+    <Flex
+    position='relative'
+    overflow='hidden'
+    direction='column'
+    minH='90vh'
+    zIndex='1'
     >
-      <Flex
-      position='relative'
-      overflow='hidden'
-      direction='column'
-      minH='90vh'
-      zIndex='1'
+      <UserProfileContainer userImg={user3} handleNavigate={handleNavigate}/>
+      <MainHeader />
+      <Box
+      position='absolute'
+      onClick={handleReset}
+      display={cardListVisible ? 'block' : 'none'}
+      w='85%'
+      h='10vh'
+      p='8px'
       >
-        <UserProfileContainer userImg={user3} handleNavigate={handleNavigate}/>
-        <MainHeader />
-        <Box
-        position='absolute'
-        onClick={handleReset}
-        display={cardListVisible ? 'block' : 'none'}
-        w='85%'
-        h='10vh'
-        p='8px'
-        >
-          <CloseIcon color='snow'/>
-        </Box>
-        <Square h='400px' w='100%'bg='twilight' position='absolute' zIndex='-1'>
-          Google map placeholder
-        </Square>
-          <RouteCardList  handleFocus={handleFocus} cardListVisible={cardListVisible}/>
-      </Flex>
-    </Skeleton>
+        <CloseIcon color='snow'/>
+      </Box>
+      <Square h='400px' w='100%'bg='twilight' position='absolute' zIndex='-1'>
+        Google map placeholder
+      </Square>
+        <RouteCardList  
+        handleFocus={handleFocus} 
+        cardListVisible={cardListVisible} 
+        isLoaded={isLoading}
+        routeData={data}
+        /> 
+    </Flex>
   )
 }
 

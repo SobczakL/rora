@@ -1,8 +1,18 @@
-import { Card, CardBody, CardHeader, Heading, Img, VStack, Text } from "@chakra-ui/react"
+import { Card, CardBody, CardHeader, Heading, Img, VStack, Text, Box } from "@chakra-ui/react"
 import tramIcon from '../../assets/icons/tram.svg'
+import subwayIcon from '../../assets/icons/subway.svg'
+import trainIcon from '../../assets/icons/train.svg'
+import busIcon from '../../assets/icons/bus.svg'
 import { ChevronRightIcon } from '@chakra-ui/icons'
+import trimDirectionHeading from '../../utils/trimDirectionHeading'
+function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, routeNextArrival, isFavourite}) {
 
-function RouteCard({ routeNumber, routeName, isFavourite}) {
+    const routeIcons = {
+        0: tramIcon,
+        1: subwayIcon,
+        2: trainIcon,
+        3: busIcon
+    }
     return (
         <Card 
         display='flex'
@@ -16,7 +26,7 @@ function RouteCard({ routeNumber, routeName, isFavourite}) {
         _active={{bg: 'deepNavy'}}
         cursor='pointer'
         >
-            <Img src={tramIcon} maxH='100%' maxW='40px'/>
+            <Img src={routeIcons[routeType]} maxH='100%' maxW='40px' color='snow'/>
             <VStack 
             spacing='0' 
             align='start' 
@@ -29,7 +39,7 @@ function RouteCard({ routeNumber, routeName, isFavourite}) {
                     fontSize='fs.subheader'
                     lineHeight='lh.subheader'
                     >
-                        {routeNumber}505
+                        {`${routeNumber} ${trimDirectionHeading(routeHeadsign)}`}
                     </Heading>
                 </CardHeader>
                 <CardBody p='0'>
@@ -38,7 +48,7 @@ function RouteCard({ routeNumber, routeName, isFavourite}) {
                     fontSize='fs.body.lg'
                     lineHeight='lh.body.lg'
                     >
-                        {routeName}queen
+                        {routeName}
                     </Text>
                 </CardBody>
             </VStack>
