@@ -2,10 +2,16 @@ import {Flex, Img, } from '@chakra-ui/react'
 import roraLogo from '../../assets/logo/rora-main.svg'
 import LoginForm from '../../components/ui/form/LoginForm'
 import { useNavigate } from 'react-router-dom'
+import useLocation from '../../utils/useLocation'
 
 function Login() {
 
 const navigate = useNavigate();
+const { location, locationError} = useLocation();
+
+if (location){
+  console.log(location)
+}
 
 const handleVerifyUser = () => {
     navigate('/home')

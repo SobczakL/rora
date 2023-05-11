@@ -2,7 +2,7 @@ import { FormControl, Box } from "@chakra-ui/react"
 import LoginInput from "../input/LoginInput"
 import { useState } from 'react'
 import axios from 'axios'
-import { baseURL } from "../../../services/baseURL"
+import { baseURL } from "../../../services/config"
 import LoginButton from "../button/LoginButton"
 
 function LoginForm({handleVerifyUser}) {
@@ -24,8 +24,8 @@ function LoginForm({handleVerifyUser}) {
         event.preventDefault();
         setIsLoading(true);
         axios.post(`${baseURL}/login`,{
-        username: username,
-        password: password
+            username: username,
+            password: password
         })
         .then(response => {
         console.log(response.data);

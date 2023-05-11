@@ -7,11 +7,19 @@ import { useState } from "react"
 import { CloseIcon } from "@chakra-ui/icons"
 import { useNavigate } from "react-router-dom"
 import { useLoading } from "../../utils/useLoading"
+import useNearbyRoutes from "../../services/useNearbyRoutes"
 
 function Home() {
   const isLoading = useLoading()
   const navigate = useNavigate()
 
+  const { data, loading, error} = useNearbyRoutes()
+
+
+  if(data){
+    console.log(data)
+
+  }
   const [cardListVisible, setCardListVisible] = useState(false);
 
   const handleFocus = () => {
