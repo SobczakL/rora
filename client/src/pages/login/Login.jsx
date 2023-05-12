@@ -9,10 +9,6 @@ function Login() {
 const navigate = useNavigate();
 const { location, locationError} = useLocation();
 
-if (location){
-  console.log(location)
-}
-
 const handleVerifyUser = () => {
     navigate('/home')
 }
