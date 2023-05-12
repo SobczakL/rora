@@ -32,7 +32,7 @@ function LoginForm({handleVerifyUser}) {
             password: password
         })
         .then(response => {
-            localStorage.setItem('username', JSON.stringify(username)) 
+            localStorage.setItem('username', JSON.stringify(response.data.firstName)) 
             setTimeout(() =>{
                 setIsLoading(false);
                 handleVerifyUser()
