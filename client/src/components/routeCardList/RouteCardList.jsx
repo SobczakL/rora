@@ -29,7 +29,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
             case 'nearby':
                 setListType(type);
                 break;
-            case 'favourites':
+            case 'saved':
                 setListType(type);
                 break;
             default:
@@ -62,34 +62,38 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                     spacing='2px'
                     w='100%'
                 >
-                    {nearbyData && nearbyData.map((route) => (
-                            <RouteCard
+                    {
+                        listType === 'nearby' ? nearbyData && nearbyData.map((route) => {
+                            
+                            const isSaved = () => {
+                                return savedRoutesData.find((savedRoute) => savedRoute.routeId === route.route_departures[0].global_route_id) !== undefined;
+                            }
+                            return (
+                                <RouteCard
                                 key={route.route_departures[0].global_route_id}
                                 onClick={() => handleRouteCardClick(route)}
                                 routeNumber={route.route_departures[0].route_short_name}
                                 routeHeadsign={route.route_departures[0].itineraries[0].direction_headsign}
                                 routeName={route.route_departures[0].route_long_name}
                                 routeType={route.route_departures[0].route_type}
-                                routeNextArrival={route.route_departures[0].itineraries[0].schedule_items[0].departure_time}
-                            />
-                        ))}
-                    {/* {listType === 'nearby' && (
-                        nearbyData.map((route) => (
-                            <RouteCard
-                                key={route.route_departures[0].global_route_id}
+                                isSaved={isSaved()}
+                                />
+                            );
+                        })
+                        : listType === 'saved' ? savedRoutesData && savedRoutesData.map((route) => {
+                            return (
+                                <RouteCard
+                                key={route.routeId}
                                 onClick={() => handleRouteCardClick(route)}
-                                routeNumber={route.route_departures[0].route_short_name}
-                                routeHeadsign={route.route_departures[0].itineraries[0].direction_headsign}
-                                routeName={route.route_departures[0].route_long_name}
-                                routeType={route.route_departures[0].route_type}
-                                routeNextArrival={route.route_departures[0].itineraries[0].schedule_items[0].departure_time}
-                            />
-                        ))
-                    )} */}
-                    {/* {listType === 'favourites' && (
-                        // Map over the favouritesData array similarly as nearbyData
-                        // You'll need to have the favouritesData available in the component
-                    )} */}
+                                routeNumber={route.routeNumber}
+                                routeHeadsign={route.routeHeadsign}
+                                routeName={route.routeName}
+                                routeType={route.routeType}
+                                />
+                            );
+                        })
+                        : null
+                    }
                 </VStack>
             </Skeleton>
         </Flex>

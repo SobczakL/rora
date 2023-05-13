@@ -5,7 +5,7 @@ import trainIcon from '../../assets/icons/train.svg'
 import busIcon from '../../assets/icons/bus.svg'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import trimDirectionHeading from '../../utils/trimDirectionHeading'
-function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, routeNextArrival, isFavourite}) {
+function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, isSaved}) {
 
     const routeIcons = {
         0: tramIcon,
@@ -54,7 +54,7 @@ function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, routeNext
             </VStack>
             <ChevronRightIcon 
             boxSize={6}
-            color={isFavourite ? 'sunrise' : 'lavender'}
+            color={isSaved ? 'sunrise' : 'lavender'}
             />
         </Card>
     )

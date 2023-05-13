@@ -3,7 +3,7 @@ import {Button} from '@chakra-ui/react'
 function SecondaryButton({innerText, handleButtonClick, listType}) {
 
     const handleClick = () => {
-        handleButtonClick('favourites')
+        handleButtonClick('saved')
     }
 
     return (
@@ -17,11 +17,11 @@ function SecondaryButton({innerText, handleButtonClick, listType}) {
         borderRadius='20px'
         fontFamily= 'latoB'
         fontSize= 'fs.labels'
-        bg={listType === 'favourites' ? 'sunrise' : 'deepNavy'}
-        color={listType === 'favourites' ? 'snow' : 'lavender'}
-        border={listType === 'favourites' ? 'none' : '1px'}
+        bg={listType === 'saved' ? 'sunrise' : 'deepNavy'}
+        color={listType === 'saved' ? 'snow' : 'lavender'}
+        border={listType === 'saved' ? 'none' : '1px'}
         borderColor='lavender'
-        _hover={listType === 'favourites'? {bg: 'darkTangerine'} : {bg:'lavenderGrey'}}
+        _hover={listType === 'saved'? {bg: 'darkTangerine'} : {bg:'lavenderGrey'}}
         >
             {innerText}
         </Button>
