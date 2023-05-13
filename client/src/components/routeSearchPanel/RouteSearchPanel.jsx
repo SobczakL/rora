@@ -3,7 +3,8 @@ import SearchInput from "../ui/input/SearchInput"
 import PrimaryButton from '../ui/button/PrimaryButton'
 import SecondaryButton from '../ui/button/SecondaryButton'
 import locationIcon from '../../assets/icons/location.svg'
-function RouteSearchPanel({onClick}) {
+
+function RouteSearchPanel({onClick, handleButtonClick, listType}) {
     return (
         <Flex
         direction='column'
@@ -15,8 +16,8 @@ function RouteSearchPanel({onClick}) {
             gap='16px'
             px='24px'
             >
-                <PrimaryButton innerText='Nearby' icon={locationIcon} />
-                <SecondaryButton innerText='Favourites'/>
+                <PrimaryButton innerText='Nearby' icon={locationIcon} handleButtonClick={handleButtonClick} listType={listType}/>
+                <SecondaryButton innerText='Favourites' handleButtonClick={handleButtonClick} listType={listType}/>
             </Flex>
         </Flex>
     )

@@ -1,8 +1,11 @@
 import { Box, Center, Text } from "@chakra-ui/react"
+import { motion } from "framer-motion"
 
-function MainHeader({userName, }) {
+function MainHeader({userName, loaded}) {
     return (
         <Center
+        as={motion.div}
+        animate={{opacity: loaded ? 0 : 1, scale: loaded ? 0 : 1}}
         position='absolute'
         top='125px'
         maxW='100%'

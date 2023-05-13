@@ -13,8 +13,6 @@ function Home() {
   const isLoading = useLoading()
   const navigate = useNavigate()
 
-  const { data, loading, error} = useNearbyRoutes()
-
   const [cardListVisible, setCardListVisible] = useState(false);
 
   const username = JSON.parse(localStorage.getItem('username'));
@@ -33,18 +31,6 @@ function Home() {
     navigate('/home/user')
   }
 
-  if(error){
-    console.log(error)
-  }
-
-  if(loading){
-    return (<h1>Loading ...</h1>)
-  }
-
-  if(data){
-    console.log(data)
-  }
-
   return (
     <Flex
     position='relative'
@@ -54,7 +40,7 @@ function Home() {
     zIndex='1'
     >
       <UserProfileContainer userImg={user3} handleNavigate={handleNavigate}/>
-      <MainHeader userName={username}/>
+      <MainHeader userName={username} loaded={isLoading}/>
       <Box
       position='absolute'
       onClick={handleReset}
@@ -72,7 +58,6 @@ function Home() {
         handleFocus={handleFocus} 
         cardListVisible={cardListVisible} 
         isLoaded={isLoading}
-        routeData={data}
         /> 
     </Flex>
   )

@@ -3,30 +3,30 @@ import { useEffect, useState } from "react"
 import { serverURL } from "./config"
 
 function useNearbyRoutes(){
-    const [data, setData] = useState(null)
-    const [loading, setLoading] = useState(null)
-    const [error, setError] = useState(null)
+    const [nearbyData, setNearbyData] = useState(null)
+    const [nearbyLoading, setNearbyLoading] = useState(null)
+    const [nearbyError, setNearbyError] = useState(null)
 
     const userLocation = JSON.parse(localStorage.getItem('location'))
 
     useEffect(() => {
-        setLoading(true);
+        setNearbyLoading(true);
         axios
             .post(`${serverURL}/home`,{
                 lat: userLocation.latitude,
                 lon: userLocation.longitude
             })
             .then((response) => {
-                setData(response.data);
+                setNearbyData(response.data);
             })
             .catch((error) => {
-                setError(error);
+                setNearbyError(error);
             })
             .finally(() => {
-                setLoading(false);
+                setNearbyLoading(false);
             });
         }, []);
     
-    return { data, loading, error };
+    return { nearbyData, nearbyLoading, nearbyError };
 }
 export default useNearbyRoutes;

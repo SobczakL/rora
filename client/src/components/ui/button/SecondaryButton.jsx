@@ -1,9 +1,14 @@
 import {Button} from '@chakra-ui/react'
 
-function SecondaryButton({innerText, onClick, isActive}) {
+function SecondaryButton({innerText, handleButtonClick, listType}) {
+
+    const handleClick = () => {
+        handleButtonClick('favourites')
+    }
+
     return (
         <Button
-        onClick={onClick}
+        onClick={handleClick}
         display='flex'
         alignItems='center'
         w='100%'
@@ -12,11 +17,11 @@ function SecondaryButton({innerText, onClick, isActive}) {
         borderRadius='20px'
         fontFamily= 'latoB'
         fontSize= 'fs.labels'
-        bg={isActive ? 'sunrise' : 'deepNavy'}
-        color={isActive ? 'snow' : 'lavender'}
-        border={isActive ? 'none' : '1px'}
+        bg={listType === 'favourites' ? 'sunrise' : 'deepNavy'}
+        color={listType === 'favourites' ? 'snow' : 'lavender'}
+        border={listType === 'favourites' ? 'none' : '1px'}
         borderColor='lavender'
-        _hover={isActive? {bg: 'navy'} : {bg:'lavenderGrey'}}
+        _hover={listType === 'favourites'? {bg: 'darkTangerine'} : {bg:'lavenderGrey'}}
         >
             {innerText}
         </Button>
