@@ -5,7 +5,7 @@ import trainIcon from '../../assets/icons/train.svg'
 import busIcon from '../../assets/icons/bus.svg'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import trimDirectionHeading from '../../utils/trimDirectionHeading'
-function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, isSaved}) {
+function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, isSaved, onClick}) {
 
     const routeIcons = {
         0: tramIcon,
@@ -15,6 +15,7 @@ function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, isSaved})
     }
     return (
         <Card 
+        onClick={onClick}
         display='flex'
         direction='row'
         align='center'

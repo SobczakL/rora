@@ -37,8 +37,9 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
         }
     };
 
-    const handleRouteCardClick = (route) => {
-        navigate(`/home/${route.route_departures[0].global_route_id}`);
+    const handleRouteCardClick = (routeId) => {
+        console.log(routeId)
+        navigate(`/home/${routeId}`);
     };
 
     return (
@@ -64,14 +65,14 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                 >
                     {
                         listType === 'nearby' ? nearbyData && nearbyData.map((route) => {
-                            
+
                             const isSaved = () => {
                                 return savedRoutesData.find((savedRoute) => savedRoute.routeId === route.route_departures[0].global_route_id) !== undefined;
                             }
                             return (
                                 <RouteCard
                                 key={route.route_departures[0].global_route_id}
-                                onClick={() => handleRouteCardClick(route)}
+                                onClick={() => handleRouteCardClick(route.route_departures[0].global_route_id)}
                                 routeNumber={route.route_departures[0].route_short_name}
                                 routeHeadsign={route.route_departures[0].itineraries[0].direction_headsign}
                                 routeName={route.route_departures[0].route_long_name}
@@ -84,7 +85,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                             return (
                                 <RouteCard
                                 key={route.routeId}
-                                onClick={() => handleRouteCardClick(route)}
+                                onClick={() => handleRouteCardClick(route.routeId)}
                                 routeNumber={route.routeNumber}
                                 routeHeadsign={route.routeHeadsign}
                                 routeName={route.routeName}
