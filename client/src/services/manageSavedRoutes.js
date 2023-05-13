@@ -1,16 +1,16 @@
 import axios from "axios"
 import { serverURL } from "./config"
 
-export function savedRouteChecker(username, routeId){
-    axios.post(`${serverURL}/home/savedRoutes`, {
+export function savedRouteChecker(username, routeId, callback){
+    axios.post(`${serverURL}/home/verifySavedRoute`, {
         username: username,
         routeId: routeId
     }) 
     .then((response) => {
-        return true
+        callback(true)
     })
     .catch((error) => {
-        return false
+        callback(false)
     })
 }
 
