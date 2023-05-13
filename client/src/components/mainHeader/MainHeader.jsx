@@ -1,7 +1,7 @@
 import { Box, Center, Text } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 
-function MainHeader({userName, loaded}) {
+function MainHeader({userFirstName, loaded}) {
     return (
         <Center
         as={motion.div}
@@ -25,7 +25,7 @@ function MainHeader({userName, loaded}) {
                 fontFamily='latoB'
                 fontSize='fs.header'
                 >
-                    Hi, {userName}! Where are you off tö?
+                    Hi, {userFirstName}! Where are you off tö?
                 </Text>
             </Box>
         </Center>

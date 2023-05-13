@@ -7,6 +7,8 @@ function useGetSavedRoutes(){
     const [favouriteLoading, setFavouriteLoading] = useState(null)
     const [favouriteError, setFavouriteError] = useState(null)
 
+    localStorage.getItem('')
+
     useEffect(() => {
         setLoading(true);
         axios

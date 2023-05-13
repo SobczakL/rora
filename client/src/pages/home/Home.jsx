@@ -15,7 +15,7 @@ function Home() {
 
   const [cardListVisible, setCardListVisible] = useState(false);
 
-  const username = JSON.parse(localStorage.getItem('username'));
+  const userFirstName = JSON.parse(localStorage.getItem('firstName'));
 
   const handleFocus = () => {
     setCardListVisible(!cardListVisible);
@@ -40,7 +40,7 @@ function Home() {
     zIndex='1'
     >
       <UserProfileContainer userImg={user3} handleNavigate={handleNavigate}/>
-      <MainHeader userName={username} loaded={isLoading}/>
+      <MainHeader userFirstName={userFirstName} loaded={isLoading}/>
       <Box
       position='absolute'
       onClick={handleReset}
