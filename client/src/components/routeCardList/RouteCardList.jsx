@@ -5,11 +5,13 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useNearbyRoutes from "../../services/useNearbyRoutes";
+import useGetSavedRoutes from "../../services/useGetSavedRoutes";
 
 function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
     const navigate = useNavigate();
 
     const { nearbyData } = useNearbyRoutes();
+    const { savedRoutesData } = useGetSavedRoutes();
 
     const [listType, setListType] = useState('nearby');
 

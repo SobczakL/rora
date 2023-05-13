@@ -3,30 +3,29 @@ import { useEffect, useState } from "react"
 import { serverURL } from "./config"
 
 function useGetSavedRoutes(){
-    const [favouriteData, setFavouriteData] = useState(null)
-    const [favouriteLoading, setFavouriteLoading] = useState(null)
-    const [favouriteError, setFavouriteError] = useState(null)
+    const [savedRoutesData, setSavedRoutesData] = useState(null)
+    const [savedRoutesLoading, setSavedRoutesLoading] = useState(null)
+    const [savedRoutesError, setSavedRoutesError] = useState(null)
 
-    localStorage.getItem('')
+    const username = JSON.parse(localStorage.getItem('username'))
 
     useEffect(() => {
-        setLoading(true);
+        setSavedRoutesLoading(true);
         axios
-            .get(`${serverURL}/home/favourites`,{
-                lat: userLocation.latitude,
-                lon: userLocation.longitude
+            .post(`${serverURL}/home/savedRoutes`,{
+                username: username
             })
             .then((response) => {
-                setFavouriteData(response.data);
+                setSavedRoutesData(response.data);
             })
             .catch((error) => {
-                setFavouriteError(error);
+                setSavedRoutesError(error);
             })
             .finally(() => {
-                setFavouriteLoading(false);
+                setSavedRoutesLoading(false);
             });
         }, []);
     
-    return { favouriteData, favouriteLoading, favouriteError };
+    return { savedRoutesData, savedRoutesLoading, savedRoutesError };
 }
 export default useGetSavedRoutes;
