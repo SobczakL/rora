@@ -2,21 +2,30 @@ import { Flex, Modal, ModalHeader, ModalCloseButton, ModalBody, ModalContent, Mo
 import PrimaryButton from "../button/PrimaryButton";
 import SecondaryButton from "../button/SecondaryButton";
 
-function DelayModal({onOpen, onClose}){
+function DelayModal({isOpen, onClose}){
     return (
-        <Modal isOpen={onOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent>
-                <ModalHeader></ModalHeader>
+            <ModalContent
+            bg='lavenderGrey'
+            color='snow'
+            >
+                <ModalHeader>Update to route:</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <Text>Insert update from DB</Text>
+                    <Text>Accident on route. The situation will impact all route schedules until further notice. Please plan accordingly.</Text>
                 </ModalBody>
                 <ModalFooter>
-                    <Text>Are you experiencing a delay?</Text>
-                    <Flex>
-                        <PrimaryButton innerText='Yes'/>
-                        <SecondaryButton innerText='No'/>
+                    <Flex
+                    direction='column'
+                    m='auto'
+                    gap='16px'
+                    >
+                        <Text>Are you experiencing a delay?</Text>
+                        <Flex>
+                            <PrimaryButton innerText='Yes'/>
+                            <SecondaryButton innerText='No'/>
+                        </Flex> 
                     </Flex>
                 </ModalFooter>
                 <ModalFooter>

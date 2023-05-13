@@ -1,4 +1,4 @@
-import { Box, Flex, Skeleton, } from "@chakra-ui/react"
+import { Box, Flex, Skeleton, useDisclosure, } from "@chakra-ui/react"
 import RouteCard from "../../components/routeCard/RouteCard"
 import RouteStopList from "../../components/routeStopList/RouteStopList";
 import TimeBadge from "../../components/ui/badge/TimeBadge";
@@ -35,12 +35,12 @@ function RouteDetails() {
             setIsSaved(result);
             });
         };
-        
+
         checkSavedRoute();
     }, [isSaved]);
 
     // Toggle route updates
-    const isUpdate = (null)
+    const [isUpdate, setIsUpdate] = useState(false)
 
     const toggleUpdate = (type) =>{
         if(type === "delay"){
@@ -50,6 +50,16 @@ function RouteDetails() {
             return (<ServiceChangeModal />)
         }
     }
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const incomingUpdate = () => {
+        setTimeout(() => {
+            setIsUpdate(true)
+        }, 7000)
+    }
+
+    incomingUpdate()
 
     const handleUpdate = async () => {
             if (isSaved) {
@@ -70,7 +80,7 @@ function RouteDetails() {
         };
 
     if(routeDetailsData){
-
+        console.log(routeDetailsData)
         return (
             <Flex
             position='relative'
@@ -100,11 +110,11 @@ function RouteDetails() {
                 endColor='twilight'
                 isLoaded={isLoaded}
                 >
-                    <Flex align='center' gap='16px' px='16px'>
+                    <Flex align='center' gap='16px' px='16px' justifyContent='center'>
                         {/* innerText is static until data is setup */}
                         <TimeBadge innerText='4 mins'/>
-                        <UpdateButton isUpdate={isUpdate}/>
-                        <DelayModal />
+                        <UpdateButton isUpdate={isUpdate} onClick={onOpen}/>
+                        <DelayModal isOpen={isOpen} onClose={onClose}/>
                     </Flex> 
                 </Skeleton>
                 <Skeleton
@@ -112,7 +122,7 @@ function RouteDetails() {
                 endColor='twilight'
                 isLoaded={isLoaded}
                 >
-                    <RouteStopList /> 
+                    <RouteStopList direction={direction} data={routeDetailsData}/> 
                 </Skeleton>
             </Flex>
         )
