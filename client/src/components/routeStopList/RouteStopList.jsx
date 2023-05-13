@@ -1,5 +1,6 @@
 import { Stepper, StepIndicator, Step, StepStatus, StepIcon, Box, StepTitle } from "@chakra-ui/react"
 import { useSteps } from "@chakra-ui/react";
+
 const stops = [
     {title: 'Queen and Spadina'},
     {title: 'Queen and Spadina'},

@@ -37,8 +37,9 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
         }
     };
 
-    const handleRouteCardClick = (routeId) => {
+    const handleRouteCardClick = (routeId, direction) => {
         console.log(routeId)
+        localStorage.setItem('direction', JSON.stringify(direction)) 
         navigate(`/home/${routeId}`);
     };
 
@@ -72,7 +73,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                             return (
                                 <RouteCard
                                 key={route.route_departures[0].global_route_id}
-                                onClick={() => handleRouteCardClick(route.route_departures[0].global_route_id)}
+                                onClick={() => handleRouteCardClick(route.route_departures[0].global_route_id, route.route_departures[0].itineraries[0].direction_headsign)}
                                 routeNumber={route.route_departures[0].route_short_name}
                                 routeHeadsign={route.route_departures[0].itineraries[0].direction_headsign}
                                 routeName={route.route_departures[0].route_long_name}

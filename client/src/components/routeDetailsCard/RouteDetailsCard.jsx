@@ -3,9 +3,10 @@ import tramIcon from '../../assets/icons/tram.svg'
 import subwayIcon from '../../assets/icons/subway.svg'
 import trainIcon from '../../assets/icons/train.svg'
 import busIcon from '../../assets/icons/bus.svg'
-import { ChevronRightIcon } from '@chakra-ui/icons'
+import { ArrowBackIcon, ChevronRightIcon, StarIcon } from '@chakra-ui/icons'
 import trimDirectionHeading from '../../utils/trimDirectionHeading'
-function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, isSaved, onClick}) {
+
+function RouteDetailsCard({ routeNumber, routeHeadsign, routeName, routeType, handleBack, handleUpdate, isSaved}) {
 
     const routeIcons = {
         0: tramIcon,
@@ -15,7 +16,6 @@ function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, isSaved, 
     }
     return (
         <Card 
-        onClick={onClick}
         display='flex'
         direction='row'
         align='center'
@@ -27,6 +27,7 @@ function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, isSaved, 
         _active={{bg: 'deepNavy'}}
         cursor='pointer'
         >
+            <ArrowBackIcon boxSize={6} color='snow' onClick={handleBack}/>
             <Img src={routeIcons[routeType]} maxH='100%' maxW='40px' color='snow'/>
             <VStack 
             spacing='0' 
@@ -53,12 +54,12 @@ function RouteCard({ routeNumber, routeHeadsign, routeName, routeType, isSaved, 
                     </Text>
                 </CardBody>
             </VStack>
-            <ChevronRightIcon 
-            boxSize={6}
-            color={isSaved ? 'sunrise' : 'lavender'}
+            <StarIcon boxSize={6} 
+            onClick={handleUpdate}
+            color={isSaved ? 'sunrise' : 'lavenderGrey'}
             />
         </Card>
     )
 }
 
-export default RouteCard
+export default RouteDetailsCard
