@@ -12,6 +12,9 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
 
     const { nearbyData } = useNearbyRoutes();
     const { savedRoutesData } = useGetSavedRoutes();
+    if(savedRoutesData){
+        console.log(savedRoutesData)
+    }
 
     const [listType, setListType] = useState('nearby');
 
@@ -23,6 +26,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
     const onFocus = () => {
         handleFocus();
     };
+
 
     const handleButtonClick = (type) => {
         switch (type) {
@@ -65,14 +69,14 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                     w='100%'
                 >
                     {
-                        listType === 'nearby' ? nearbyData && nearbyData.map((route) => {
+                        listType === 'nearby' ? nearbyData && nearbyData.map((route, index) => {
 
                             const isSaved = () => {
                                 return savedRoutesData.find((savedRoute) => savedRoute.routeId === route.route_departures[0].global_route_id) !== undefined;
                             }
                             return (
                                 <RouteCard
-                                key={route.route_departures[0].global_route_id}
+                                key={index}
                                 onClick={() => handleRouteCardClick(route.route_departures[0].global_route_id, route.route_departures[0].itineraries[0].direction_headsign)}
                                 routeNumber={route.route_departures[0].route_short_name}
                                 routeHeadsign={route.route_departures[0].itineraries[0].direction_headsign}
@@ -82,10 +86,10 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                                 />
                             );
                         })
-                        : listType === 'saved' ? savedRoutesData && savedRoutesData.map((route) => {
+                        : listType === 'saved' ? savedRoutesData && savedRoutesData.map((route, index) => {
                             return (
                                 <RouteCard
-                                key={route.routeId}
+                                key={index}
                                 onClick={() => handleRouteCardClick(route.routeId)}
                                 routeNumber={route.routeNumber}
                                 routeHeadsign={route.routeHeadsign}
@@ -100,6 +104,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
             </Skeleton>
         </Flex>
     )
+
 }
 
 export default RouteCardList;
