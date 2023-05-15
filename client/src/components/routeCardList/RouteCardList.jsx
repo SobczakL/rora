@@ -92,9 +92,10 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                                 key={index}
                                 onClick={() => handleRouteCardClick(route.routeId)}
                                 routeNumber={route.routeNumber}
-                                routeHeadsign={route.routeHeadsign}
+                                routeHeadsign={route.routeHeading}
                                 routeName={route.routeName}
                                 routeType={route.routeType}
+                                isSaved={true}
                                 />
                             );
                         })
