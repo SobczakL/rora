@@ -12,9 +12,6 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
 
     const { nearbyData } = useNearbyRoutes();
     const { savedRoutesData } = useGetSavedRoutes();
-    if(savedRoutesData){
-        console.log(savedRoutesData)
-    }
 
     const [listType, setListType] = useState('nearby');
 
@@ -54,7 +51,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
             variants={cardListVariants}
             initial={cardListVisible ? 'visible' : 'hidden'}
             animate={cardListVisible ? 'visible' : 'hidden'}
-            pointerEvents={cardListVisible ? "none" : "auto"}
+            // pointerEvents={cardListVisible ? "none" : "auto"}
             h='100%'
         >
             <RouteSearchPanel onClick={onFocus} handleButtonClick={handleButtonClick} listType={listType}/>

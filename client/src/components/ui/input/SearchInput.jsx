@@ -1,11 +1,12 @@
 import { Img, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
 import { SearchIcon } from "@chakra-ui/icons"
 
-function SearchInput({onClick}) {
+function SearchInput({onClick, handleChange}) {
     return (
         <InputGroup>
             <Input
             onClick={onClick}
+            onChange={handleChange}
             cursor='pointer'
             fontFamily='latoB'
             fontSize='fs.body.lg'
