@@ -38,3 +38,27 @@ exports.getUserDetails = ((req, res) => {
             res.status(500).send(err.error)
         })
 })
+
+
+exports.editUserDetails = ((req, res) => {
+    const { username, data } = req.body;
+    const newUserDetails = {
+        firstName: data.firstName,
+        LastName: data.LastName,
+        email: data.email,
+        phone: data.phone,
+        cardNumber: data.cardNumber,
+        exDate: data.exDate,
+        cvc: data.cvc,
+        zip: data.zip
+    }
+    knex('userData')
+        .where('username', username)
+        .update(newUserDetails)
+        .then( response => {
+            res.status(200).send('User details saved.')
+        })
+        .catch((err) => {
+            res.status(500).send(err.error)
+        })
+})
