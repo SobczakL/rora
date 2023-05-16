@@ -1,26 +1,29 @@
-import { Box, Input, Text } from "@chakra-ui/react";
+import { Box, FormLabel, Input, Text } from "@chakra-ui/react";
 
-function UserInput({inputHeader, type, placeholderText}){
+function UserInput({inputHeader, type, placeholder, value}){
     return(
         <Box
         fontFamily='latoR'
         w='100%'
         >
-            <Text
+            <FormLabel
+            m='0'
             color='lavenderGrey'
             fontSize='fs.body.sm'
             lineHeight='lh.body.sm'
             >
                 {inputHeader}
-            </Text>
+            </FormLabel>
             <Input
-            placeholderText={placeholderText}
+            placeholder={placeholder}
+            value={value}
             type={type}
             fontSize='fs.body.lg'
             lineHeight='lh.body.lg'
             bg='lavenderGrey'
             color='snow'
             borderColor='lavender'
+            _placeholder={{color:'lavender', fontSize:'fs.labels'}}
             >
             </Input>
         </Box>
