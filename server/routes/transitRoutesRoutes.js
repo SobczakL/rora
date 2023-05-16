@@ -4,6 +4,7 @@ const savedRoutesController = require('../controllers/savedRoutesController')
 const routeDetailsController = require('../controllers/routeDetailsController')
 
 router.route('/').post(transitRoutesController.getNearbyRoutes)
+router.route('/search').post(transitRoutesController.searchRoutes)
 
 router.route('/savedRoutes').post(savedRoutesController.getSavedRoutes)
 router.route('/saveRoute').post(savedRoutesController.addSavedRoutes)
