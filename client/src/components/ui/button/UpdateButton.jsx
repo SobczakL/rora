@@ -1,11 +1,12 @@
 import { Button } from "@chakra-ui/react";
 
-function UpdateButton({innerText}){
+function UpdateButton({innerText, isUpdate, onClick}){
     return (
         <Button
-        display='flex'
+        display={isUpdate ? 'flex' : 'none'}
+        onClick={onClick}
         justifyContent='center'
-        w='100%'
+        w={isUpdate ? '100%' : '0%'}
         h='36px'
         bg='sunrise'
         color='snow'

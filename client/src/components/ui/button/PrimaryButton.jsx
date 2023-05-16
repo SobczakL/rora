@@ -1,9 +1,14 @@
 import {Button, Img} from '@chakra-ui/react'
 
-function PrimaryButton({innerText, onClick, isActive, icon}) {
+function PrimaryButton({innerText, handleButtonClick, icon, listType}) {
+    
+    const handleClick = () => {
+        handleButtonClick('nearby')
+    }
+
     return (
         <Button
-        onClick={onClick}
+        onClick={handleClick}
         position='relative'
         display='flex'
         align='center'
@@ -13,11 +18,11 @@ function PrimaryButton({innerText, onClick, isActive, icon}) {
         borderRadius='20px'
         fontFamily= 'latoB'
         fontSize= 'fs.labels'
-        bg={isActive ? 'sapphire' : 'deepNavy'}
-        color={isActive ? 'snow' : 'lavender'}
-        border={isActive ? 'none' : '1px'}
+        bg={listType === 'nearby' ? 'sapphire' : 'deepNavy'}
+        color={listType === 'nearby' ? 'snow' : 'lavender'}
+        border={listType === 'nearby' ? 'none' : '1px'}
         borderColor='lavender'
-        _hover={isActive? {bg: 'navy'} : {bg:'lavenderGrey'}}
+        _hover={listType === 'nearby' ? {bg: 'navy'} : {bg:'lavenderGrey'}}
         >
             {innerText}{icon ?
                 <Img 

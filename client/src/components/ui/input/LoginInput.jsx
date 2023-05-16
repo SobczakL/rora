@@ -1,12 +1,13 @@
 import {Input} from '@chakra-ui/react'
 
-function LoginInput({innerText, type, placeholderText, onChange}) {
+function LoginInput({innerText, type, placeholderText, onChange, errorState}) {
     return (
         <Input
         fontSize='fs.body.lg'
         borderRadius='20px'
         bg='twilight'
-        border='none'
+        border={errorState ? '1px' : 'none'}
+        borderColor={errorState ? 'crimson' : 'none'}
         color='snow'
         px='24px'
         placeholder={placeholderText}
