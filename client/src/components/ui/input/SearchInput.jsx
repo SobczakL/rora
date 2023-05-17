@@ -1,12 +1,13 @@
-import { Img, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
+import { Button, Img, Input, InputGroup, InputRightElement } from "@chakra-ui/react"
 import { SearchIcon } from "@chakra-ui/icons"
 
-function SearchInput({onClick, handleChange}) {
+function SearchInput({onClick, handleChange, handleEnter}) {
     return (
-        <InputGroup>
+        <InputGroup gap='4px'>
             <Input
             onClick={onClick}
             onChange={handleChange}
+            // onKeyDown={handleEnter}
             cursor='pointer'
             fontFamily='latoB'
             fontSize='fs.body.lg'
@@ -21,7 +22,13 @@ function SearchInput({onClick, handleChange}) {
             _focus={{bg:'lavenderGrey'}}
             >
             </Input> 
-            <InputRightElement children={<SearchIcon color='lavender'/>}/>
+            <Button
+            onClick={handleEnter}
+            bg='lavenderGrey'
+            _hover={{bg:'twilight'}}
+            >
+                <InputRightElement children={<SearchIcon color='lavender'/>}/>
+            </Button>
         </InputGroup>
     )
 }
