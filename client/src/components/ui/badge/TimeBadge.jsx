@@ -1,6 +1,9 @@
 import { Badge } from "@chakra-ui/react";
 
 function TimeBadge({innerText}){
+
+    const currentTime = Date.now();
+
     return (
         <Badge
         display='flex'

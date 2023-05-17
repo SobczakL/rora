@@ -10,6 +10,8 @@ import RouteDetailsCard from "../../components/routeDetailsCard/RouteDetailsCard
 import { savedRouteChecker, saveNewRoute, deleteSavedRoute } from '../../services/manageSavedRoutes';
 import { useState, useEffect } from "react";
 import { useLoading } from '../../utils/useLoading'
+import getStopsAfterCurrentLocation from '../../utils/getStopsAfterCurrentLocation'
+import timeConverter from "../../utils/timeConverter";
 
 
 function RouteDetails() {
@@ -80,7 +82,8 @@ function RouteDetails() {
         };
 
     if(routeDetailsData){
-        console.log(routeDetailsData)
+        const routeDetailsDataSliced = getStopsAfterCurrentLocation(routeDetailsData)
+        const nextDeparture = timeConverter(routeDetailsDataSliced[0].next_departure.departure_time)
         return (
             <Flex
             position='relative'
@@ -112,7 +115,7 @@ function RouteDetails() {
                 >
                     <Flex align='center' gap='16px' px='16px' justifyContent='center'>
                         {/* innerText is static until data is setup */}
-                        <TimeBadge innerText='4 mins'/>
+                        <TimeBadge innerText={nextDeparture}/>
                         <UpdateButton isUpdate={isUpdate} onClick={onOpen}/>
                         <DelayModal isOpen={isOpen} onClose={onClose}/>
                     </Flex> 
@@ -122,7 +125,7 @@ function RouteDetails() {
                 endColor='twilight'
                 isLoaded={isLoaded}
                 >
-                    <RouteStopList direction={direction} data={routeDetailsData}/> 
+                    <RouteStopList direction={direction} data={routeDetailsDataSliced}/> 
                 </Skeleton>
             </Flex>
         )
