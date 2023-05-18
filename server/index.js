@@ -5,8 +5,8 @@ const cors = require("cors");
 const app = express();
 
 // add routes
-const userRoutes = require('./routes/userRoutes')
-const transitRoutesRoutes = require('./routes/transitRoutesRoutes')
+const userRoutes = require("./routes/userRoutes");
+const transitRoutesRoutes = require("./routes/transitRoutesRoutes");
 // This middleware allows to post JSON in request.body
 app.use(express.json());
 
@@ -14,15 +14,15 @@ app.use(express.json());
 app.use(cors());
 
 // Redirect incoming calls
-app.use('/login', userRoutes)
-app.use('/home', transitRoutesRoutes)
+app.use("/login", userRoutes);
+app.use("/home", transitRoutesRoutes);
 
 //Handle undefined route
 app.use((req, res, next) => {
-  res.status(404).send("Route not found.");
+    res.status(404).send("Route not found.");
 });
 
 // Start the server listening
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
