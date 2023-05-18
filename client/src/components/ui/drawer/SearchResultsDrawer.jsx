@@ -28,16 +28,18 @@ function SearchResultsDrawer({searchData, isOpen, onClose}){
             <DrawerContent
             bg='deepNavy'
             >
-                    {searchData && uniqueDirectionHeadsigns.map(direction => {
+                    {searchData && uniqueDirectionHeadsigns.map((direction, index) => {
                         return(
-                            <DrawerBody>
-                            <RouteCard
-                            onClick={() => handleRouteCardClick(searchData[0].route.global_route_id, direction)}
-                            routeNumber={searchData[0].route.route_short_name}
-                            routeHeadsign={direction}
-                            routeName={searchData[0].route.route_long_name}
-                            routeType={searchData[0].route.route_type}
-                            />
+                            <DrawerBody
+                            key={index}
+                            >
+                                <RouteCard
+                                onClick={() => handleRouteCardClick(searchData[0].route.global_route_id, direction)}
+                                routeNumber={searchData[0].route.route_short_name}
+                                routeHeadsign={direction}
+                                routeName={searchData[0].route.route_long_name}
+                                routeType={searchData[0].route.route_type}
+                                />
                             </DrawerBody>
                         )
                     })}
