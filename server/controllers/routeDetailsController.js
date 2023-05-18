@@ -10,7 +10,6 @@ exports.routeDetails = (req, res) => {
         }
     })
     .then((response) => {
-        console.log(response)
         res.status(200).json(response.data)
     })
     .catch((err) => {

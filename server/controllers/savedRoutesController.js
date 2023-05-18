@@ -58,8 +58,6 @@ exports.addSavedRoutes = (req, res) => {
         routeId,
         routeType
     }
-    console.log(req.body)
-    console.log(newRoute)
     knex('userSavedRoutes')
     .insert(newRoute)
     .then(() => {
