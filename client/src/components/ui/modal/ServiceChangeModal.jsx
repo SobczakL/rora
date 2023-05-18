@@ -5,10 +5,10 @@ function DelayModal({onOpen, onClose}){
         <Modal isOpen={onOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader></ModalHeader>
+                <ModalHeader>Service Update:</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <Text>Insert update from DB</Text>
+                    <Text>This route has temporarily changed due to city planning. Please refer to your service provider’s website for more information.</Text>
                 </ModalBody>
             </ModalContent>
         </Modal>

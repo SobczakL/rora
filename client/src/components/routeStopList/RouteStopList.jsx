@@ -1,26 +1,14 @@
 import { Stepper, StepIndicator, Step, StepStatus, StepIcon, Box, StepTitle } from "@chakra-ui/react"
 import { useSteps } from "@chakra-ui/react";
-import { useState } from "react";
 
-function RouteStopList({ direction, data }) {
+function RouteStopList({ data }) {
 
-    const [stopData, setStopData] = useState(data)
-
-    const stops = Object.values(data.itineraries).reduce((accumulator, itinerary) => {
-        if (itinerary.direction_headsign === direction) {
-            return [...accumulator, ...itinerary.stops];
-        }
-            return accumulator;
-    }, []);
 
     const { activeStop } = useSteps({
         index: 1,
-        count: stops.length
+        count: data.length
     });
 
-    if(stops){
-        console.log(stops)
-    }
 
     return (
         <Stepper
@@ -31,7 +19,7 @@ function RouteStopList({ direction, data }) {
             colorScheme="red"
             size="sm"
         >
-            {stops.map((stop, index) => (
+            {data.map((stop, index) => (
             <Step
                 display="flex"
                 alignItems="center"

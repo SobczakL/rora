@@ -3,6 +3,7 @@ import RouteCard from "../../components/routeCard/RouteCard"
 import RouteStopList from "../../components/routeStopList/RouteStopList";
 import TimeBadge from "../../components/ui/badge/TimeBadge";
 import UpdateButton from "../../components/ui/button/UpdateButton";
+import ServiceChangeModal from "../../components/ui/modal/ServiceChangeModal";
 import DelayModal from "../../components/ui/modal/DelayModal";
 import useGetRouteDetails from "../../services/useGetRouteDetails";
 import { useNavigate, useParams } from "react-router-dom";
@@ -44,13 +45,17 @@ function RouteDetails() {
     // Toggle route updates
     const [isUpdate, setIsUpdate] = useState(false)
 
+    const [modalType, setModalType] = useState("Service Delay");
+
+
     const toggleUpdate = (type) =>{
-        if(type === "delay"){
-            return (<DelayModal />)
+        if(type === "Service Delay"){
+            return (<DelayModal isOpen={isOpen} onClose={onClose}/>)
         }
-        if(type === 'service'){
-            return (<ServiceChangeModal />)
+        if(type === 'Service Update'){
+            return (<ServiceChangeModal isOpen={isOpen} onClose={onClose}/>)
         }
+        return null;
     }
 
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -79,6 +84,8 @@ function RouteDetails() {
                 await saveNewRoute(data);
                 setIsSaved(true);
             }
+            const randomType = Math.random() < 0.5 ? "Service Delay" : "Service Update";
+            setModalType(randomType);
         };
 
     if(routeDetailsData){
@@ -114,10 +121,9 @@ function RouteDetails() {
                 isLoaded={isLoaded}
                 >
                     <Flex align='center' gap='16px' px='16px' justifyContent='center'>
-                        {/* innerText is static until data is setup */}
                         <TimeBadge innerText={nextDeparture}/>
-                        <UpdateButton isUpdate={isUpdate} onClick={onOpen}/>
-                        <DelayModal isOpen={isOpen} onClose={onClose}/>
+                        <UpdateButton isUpdate={isUpdate} onClick={onOpen} innerText={modalType}/>
+                        {toggleUpdate(modalType)}
                     </Flex> 
                 </Skeleton>
                 <Skeleton

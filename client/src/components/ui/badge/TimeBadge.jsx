@@ -19,7 +19,7 @@ function TimeBadge({innerText}){
         fontSize='fs.labels' 
         lineHeight='lh.labels'
         > 
-            {innerText}
+            {`${innerText} min`}
         </Badge>
     )
 }

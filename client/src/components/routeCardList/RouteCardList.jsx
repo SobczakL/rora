@@ -24,6 +24,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
         handleFocus();
     };
 
+
     const handleButtonClick = (type) => {
         switch (type) {
             case 'nearby':
@@ -38,7 +39,6 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
     };
 
     const handleRouteCardClick = (routeId, direction) => {
-        console.log(routeId)
         localStorage.setItem('direction', JSON.stringify(direction)) 
         navigate(`/home/${routeId}`);
     };
@@ -50,7 +50,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
             variants={cardListVariants}
             initial={cardListVisible ? 'visible' : 'hidden'}
             animate={cardListVisible ? 'visible' : 'hidden'}
-            pointerEvents={cardListVisible ? "none" : "auto"}
+            // pointerEvents={cardListVisible ? "none" : "auto"}
             h='100%'
         >
             <RouteSearchPanel onClick={onFocus} handleButtonClick={handleButtonClick} listType={listType}/>
@@ -65,14 +65,14 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                     w='100%'
                 >
                     {
-                        listType === 'nearby' ? nearbyData && nearbyData.map((route) => {
+                        listType === 'nearby' ? nearbyData && nearbyData.map((route, index) => {
 
                             const isSaved = () => {
                                 return savedRoutesData.find((savedRoute) => savedRoute.routeId === route.route_departures[0].global_route_id) !== undefined;
                             }
                             return (
                                 <RouteCard
-                                key={route.route_departures[0].global_route_id}
+                                key={index}
                                 onClick={() => handleRouteCardClick(route.route_departures[0].global_route_id, route.route_departures[0].itineraries[0].direction_headsign)}
                                 routeNumber={route.route_departures[0].route_short_name}
                                 routeHeadsign={route.route_departures[0].itineraries[0].direction_headsign}
@@ -82,15 +82,16 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
                                 />
                             );
                         })
-                        : listType === 'saved' ? savedRoutesData && savedRoutesData.map((route) => {
+                        : listType === 'saved' ? savedRoutesData && savedRoutesData.map((route, index) => {
                             return (
                                 <RouteCard
-                                key={route.routeId}
+                                key={index}
                                 onClick={() => handleRouteCardClick(route.routeId)}
                                 routeNumber={route.routeNumber}
-                                routeHeadsign={route.routeHeadsign}
+                                routeHeadsign={route.routeHeading}
                                 routeName={route.routeName}
                                 routeType={route.routeType}
+                                isSaved={true}
                                 />
                             );
                         })
@@ -100,6 +101,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
             </Skeleton>
         </Flex>
     )
+
 }
 
 export default RouteCardList;
