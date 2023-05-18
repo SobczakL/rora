@@ -3,7 +3,6 @@ import { useSteps } from "@chakra-ui/react";
 
 function RouteStopList({ data }) {
 
-
     const { activeStop } = useSteps({
         index: 1,
         count: data.length

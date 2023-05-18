@@ -13,6 +13,7 @@ function Home() {
   const isLoading = useLoading()
   const navigate = useNavigate()
 
+  //State for brining up the cardlist
   const [cardListVisible, setCardListVisible] = useState(false);
 
   const userFirstName = JSON.parse(localStorage.getItem('firstName'));

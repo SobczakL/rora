@@ -7,7 +7,6 @@ function SearchInput({onClick, handleChange, handleEnter}) {
             <Input
             onClick={onClick}
             onChange={handleChange}
-            // onKeyDown={handleEnter}
             cursor='pointer'
             fontFamily='latoB'
             fontSize='fs.body.lg'

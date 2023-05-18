@@ -3,7 +3,7 @@ import tramIcon from '../../assets/icons/tram.svg'
 import subwayIcon from '../../assets/icons/subway.svg'
 import trainIcon from '../../assets/icons/train.svg'
 import busIcon from '../../assets/icons/bus.svg'
-import { ArrowBackIcon, ChevronRightIcon, StarIcon } from '@chakra-ui/icons'
+import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons'
 import trimDirectionHeading from '../../utils/trimDirectionHeading'
 
 function RouteDetailsCard({ routeNumber, routeHeadsign, routeName, routeType, handleBack, handleUpdate, isSaved}) {

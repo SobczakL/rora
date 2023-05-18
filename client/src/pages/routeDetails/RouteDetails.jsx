@@ -32,6 +32,7 @@ function RouteDetails() {
     const username = JSON.parse(localStorage.getItem('username'))
     const direction = JSON.parse(localStorage.getItem('direction'))
 
+    //Checks if the current route was previously saved
     useEffect(() => {
         const checkSavedRoute = () => {
             savedRouteChecker(username, id, (result) => {
@@ -60,6 +61,7 @@ function RouteDetails() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    //Mimics if an update were to be received from a service provider
     const incomingUpdate = () => {
         setTimeout(() => {
             setIsUpdate(true)
@@ -84,6 +86,7 @@ function RouteDetails() {
                 await saveNewRoute(data);
                 setIsSaved(true);
             }
+            //Toggle between service update type randomly
             const randomType = Math.random() < 0.5 ? "Service Delay" : "Service Update";
             setModalType(randomType);
         };

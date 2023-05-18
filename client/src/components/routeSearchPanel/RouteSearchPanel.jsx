@@ -1,6 +1,5 @@
-import { Button, Flex } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Flex } from "@chakra-ui/react";
+import { useState } from "react";
 import SearchInput from "../ui/input/SearchInput";
 import PrimaryButton from "../ui/button/PrimaryButton";
 import SecondaryButton from "../ui/button/SecondaryButton";
@@ -10,13 +9,10 @@ import axios from 'axios'
 import { serverURL } from '../../services/config'
 
 function RouteSearchPanel({ onClick, handleButtonClick, listType }) {
-    
-    const navigate = useNavigate();
 
     const [data, setData] = useState([])
     const [userInput, setUserInput] = useState(null);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
 
     const handleChange = (event) => {
         setUserInput(event.target.value);
@@ -56,7 +52,7 @@ function RouteSearchPanel({ onClick, handleButtonClick, listType }) {
         <SearchResultsDrawer
             searchData={data}
             isOpen={isDrawerOpen}
-            onClose={() => setIsDrawerOpen(false)} // Correctly calling setIsDrawerOpen(false) to close the drawer
+            onClose={() => setIsDrawerOpen(false)} 
         />
         </Flex>
     );

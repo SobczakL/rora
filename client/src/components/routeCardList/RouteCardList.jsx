@@ -1,4 +1,4 @@
-import { Flex, Skeleton, VStack, useSafeLayoutEffect } from "@chakra-ui/react"
+import { Flex, Skeleton, VStack } from "@chakra-ui/react"
 import RouteSearchPanel from "../routeSearchPanel/RouteSearchPanel";
 import RouteCard from "../routeCard/RouteCard";
 import { motion } from "framer-motion";
@@ -15,6 +15,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
 
     const [listType, setListType] = useState('nearby');
 
+    //Variants for transitions
     const cardListVariants = {
         visible: { y: '10vh', transition: { duration: 0.5 } },
         hidden: { y: '45vh' }
@@ -50,7 +51,6 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, }) {
             variants={cardListVariants}
             initial={cardListVisible ? 'visible' : 'hidden'}
             animate={cardListVisible ? 'visible' : 'hidden'}
-            // pointerEvents={cardListVisible ? "none" : "auto"}
             h='100%'
         >
             <RouteSearchPanel onClick={onFocus} handleButtonClick={handleButtonClick} listType={listType}/>
