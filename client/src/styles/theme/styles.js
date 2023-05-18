@@ -1,10 +1,10 @@
 const styles = {
-    fonts:{
-        latoR: 'latoR',
-        latoSB: 'latoSB'
+    fonts: {
+        latoR: "latoR",
+        latoSB: "latoSB",
     },
     fontSizes: {
-        fs:{
+        fs: {
             header: "28px",
             subheader: "20px",
             labels: "13px",
@@ -13,10 +13,10 @@ const styles = {
                 lg: "15px",
                 md: "13px",
                 sm: "11px",
-            }
-        }
+            },
+        },
     },
-    lineHeights:{
+    lineHeights: {
         header: "36px",
         subheader: "28px",
         labels: "20px",
@@ -27,19 +27,19 @@ const styles = {
             sm: "16px",
         },
     },
-    colors:{
-        snow: '#F1F1FF',
-        sapphire: '#3657C0',
-        navy:'#233980',
-        twilight: '#4A4973',
-        lavenderGrey: '#7C7C9F',
-        lavender: '#AEAED4',
-        deepNavy: '#2A2A40',
-        sunrise: '#F3A400',
-        crimson: '#D11547',
-        darkTangerine: '#CF8C00',
-        carmine: '#A00F36'
-    }
+    colors: {
+        snow: "#F1F1FF",
+        sapphire: "#3657C0",
+        navy: "#233980",
+        twilight: "#4A4973",
+        lavenderGrey: "#7C7C9F",
+        lavender: "#AEAED4",
+        deepNavy: "#2A2A40",
+        sunrise: "#F3A400",
+        crimson: "#D11547",
+        darkTangerine: "#CF8C00",
+        carmine: "#A00F36",
+    },
 };
 
 export default styles;

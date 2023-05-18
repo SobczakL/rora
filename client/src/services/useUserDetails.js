@@ -1,19 +1,19 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { serverURL } from "./config"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { serverURL } from "./config";
 
-function useUserDetails(){
-    const [userDetailsData, setUserDetailsData] = useState(null)
-    const [userDetailsLoading, setUserDetailsLoading] = useState(null)
-    const [userDetailsError, setUserDetailsError] = useState(null)
+function useUserDetails() {
+    const [userDetailsData, setUserDetailsData] = useState(null);
+    const [userDetailsLoading, setUserDetailsLoading] = useState(null);
+    const [userDetailsError, setUserDetailsError] = useState(null);
 
-    const username = JSON.parse(localStorage.getItem('username'))
+    const username = JSON.parse(localStorage.getItem("username"));
 
     useEffect(() => {
         setUserDetailsLoading(true);
         axios
-            .post(`${serverURL}/login/userDetails`,{
-                username: username
+            .post(`${serverURL}/login/userDetails`, {
+                username: username,
             })
             .then((response) => {
                 setUserDetailsData(response.data);
@@ -24,8 +24,8 @@ function useUserDetails(){
             .finally(() => {
                 setUserDetailsLoading(false);
             });
-        }, []);
-    
+    }, []);
+
     return { userDetailsData, userDetailsLoading, userDetailsError };
 }
 export default useUserDetails;

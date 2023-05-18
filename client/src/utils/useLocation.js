@@ -5,30 +5,33 @@ function useLocation() {
     const [locationError, setLocationError] = useState(null);
 
     useEffect(() => {
-
         localStorage.clear();
-        const storedLocation = JSON.parse(localStorage.getItem('location'));
+        const storedLocation = JSON.parse(localStorage.getItem("location"));
 
         if (storedLocation) {
             setLocation(storedLocation);
-        } 
-        else {
+        } else {
             if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const currentLocation = {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                }
-                setLocation(currentLocation);
-                localStorage.setItem('location', JSON.stringify(currentLocation))
-                },
-                (error) => {
-                setLocationError(error);
-                }
-            )} 
-            else {
-            setLocationError(new Error("Geolocation not supported in this browser."));
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const currentLocation = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                        };
+                        setLocation(currentLocation);
+                        localStorage.setItem(
+                            "location",
+                            JSON.stringify(currentLocation)
+                        );
+                    },
+                    (error) => {
+                        setLocationError(error);
+                    }
+                );
+            } else {
+                setLocationError(
+                    new Error("Geolocation not supported in this browser.")
+                );
             }
         }
     }, []);

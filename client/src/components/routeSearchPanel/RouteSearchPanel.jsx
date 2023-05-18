@@ -5,12 +5,11 @@ import PrimaryButton from "../ui/button/PrimaryButton";
 import SecondaryButton from "../ui/button/SecondaryButton";
 import locationIcon from "../../assets/icons/location.svg";
 import SearchResultsDrawer from "../ui/drawer/SearchResultsDrawer";
-import axios from 'axios'
-import { serverURL } from '../../services/config'
+import axios from "axios";
+import { serverURL } from "../../services/config";
 
 function RouteSearchPanel({ onClick, handleButtonClick, listType }) {
-
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
     const [userInput, setUserInput] = useState(null);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -20,43 +19,47 @@ function RouteSearchPanel({ onClick, handleButtonClick, listType }) {
 
     const handleEnter = (event) => {
         if (userInput !== "") {
-            axios.post(`${serverURL}/home/search`, {
-                searchInput: userInput
-            })
-            .then((response) => {
-                setData(response.data);
-                setIsDrawerOpen(true)
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+            axios
+                .post(`${serverURL}/home/search`, {
+                    searchInput: userInput,
+                })
+                .then((response) => {
+                    setData(response.data);
+                    setIsDrawerOpen(true);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     };
-    
+
     return (
         <Flex direction="column" gap="16px" w="100%">
-        <SearchInput onClick={onClick} handleChange={handleChange} handleEnter={handleEnter}/>
-        <Flex gap="16px" px="24px">
-            <PrimaryButton
-            innerText="Nearby"
-            icon={locationIcon}
-            handleButtonClick={handleButtonClick}
-            listType={listType}
+            <SearchInput
+                onClick={onClick}
+                handleChange={handleChange}
+                handleEnter={handleEnter}
             />
-            <SecondaryButton
-            innerText="Favourites"
-            handleButtonClick={handleButtonClick}
-            listType={listType}
+            <Flex gap="16px" px="24px">
+                <PrimaryButton
+                    innerText="Nearby"
+                    icon={locationIcon}
+                    handleButtonClick={handleButtonClick}
+                    listType={listType}
+                />
+                <SecondaryButton
+                    innerText="Favourites"
+                    handleButtonClick={handleButtonClick}
+                    listType={listType}
+                />
+            </Flex>
+            <SearchResultsDrawer
+                searchData={data}
+                isOpen={isDrawerOpen}
+                onClose={() => setIsDrawerOpen(false)}
             />
-        </Flex>
-        <SearchResultsDrawer
-            searchData={data}
-            isOpen={isDrawerOpen}
-            onClose={() => setIsDrawerOpen(false)} 
-        />
         </Flex>
     );
 }
 
 export default RouteSearchPanel;
-

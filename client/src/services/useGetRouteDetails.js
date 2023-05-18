@@ -1,11 +1,11 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { serverURL } from "./config"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { serverURL } from "./config";
 
-function useGetRouteDetails(id){
-    const [routeDetailsData, setRouteDetailsData] = useState(null)
-    const [routeDetailsLoading, setRouteDetailsLoading] = useState(null)
-    const [routeDetailsError, setRouteDetailsError] = useState(null)
+function useGetRouteDetails(id) {
+    const [routeDetailsData, setRouteDetailsData] = useState(null);
+    const [routeDetailsLoading, setRouteDetailsLoading] = useState(null);
+    const [routeDetailsError, setRouteDetailsError] = useState(null);
 
     useEffect(() => {
         setRouteDetailsLoading(true);
@@ -20,8 +20,8 @@ function useGetRouteDetails(id){
             .finally(() => {
                 setRouteDetailsLoading(false);
             });
-        }, [id]);
-    
+    }, [id]);
+
     return { routeDetailsData, routeDetailsLoading, routeDetailsError };
 }
 export default useGetRouteDetails;
