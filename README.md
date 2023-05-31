@@ -22,10 +22,10 @@ Rora is an all-in-one transit app, allowing users access to on-time transit sche
         DB_LOCAL_PASSWORD= ** your admin password **
     ```
     - Run in the terminal the following in order:
-```
+    ```
         knex seed:run
         knex migrate:latest
-```
+    ```
 3. To run the application please do the following:
     - In client folder,
     ```
