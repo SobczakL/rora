@@ -1,28 +1,44 @@
-require("dotenv").config(); // Load .env file
-const PORT = process.env.PORT || 8080; // Read PORT value from .env or use default value 3000
 const express = require("express");
-const cors = require("cors");
+const { createConnection } = require("mysql2/promise");
+const dotenv = require("dotenv");
+const cors = require("cors")
+const mysql = require('mysql2');
+
+dotenv.config();
+
 const app = express();
+const PORT = process.env.PORT || 8080;
 
-// add routes
-const userRoutes = require("./routes/userRoutes");
-const transitRoutesRoutes = require("./routes/transitRoutesRoutes");
-// This middleware allows to post JSON in request.body
-app.use(express.json());
+const startServer = async () => {
+    try {
+        const connection = await createConnection(process.env.DATABASE_URL);
 
-// This middleware implements Cross Origin Resource Sharing (CORS)
-app.use(cors());
+        // Add routes
+        const userRoutes = require("./routes/userRoutes")(connection);
+        const transitRoutesRoutes = require("./routes/transitRoutesRoutes")(connection);
 
-// Redirect incoming calls
-app.use("/login", userRoutes);
-app.use("/home", transitRoutesRoutes);
+        // This middleware allows to post JSON in request.body
+        app.use(express.json());
 
-//Handle undefined route
-app.use((req, res, next) => {
-    res.status(404).send("Route not found.");
-});
+        // This middleware implements Cross Origin Resource Sharing (CORS)
+        app.use(cors());
 
-// Start the server listening
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+        // Redirect incoming calls
+        app.use("/login", userRoutes);
+        app.use("/home", transitRoutesRoutes);
+
+        // Handle undefined route
+        app.use((req, res, next) => {
+            res.status(404).send("Route not found.");
+        });
+
+        // Start the server listening
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error("Failed to connect to the database:", error);
+    }
+};
+
+startServer;
