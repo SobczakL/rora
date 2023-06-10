@@ -1,4 +1,3 @@
-import axios from "axios";
 import { dropUserData, insertUserData, createUserData, dropUserSavedRoutes, insertUserSavedRoutes, createUserSavedRoutes } from './sql.js';
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
@@ -32,25 +31,26 @@ const firstRoute = {
 
 const loadAndSaveData = async () => {
   try {
-    await connection.query(dropUserData);
+    await connection.promise().query(dropUserData);
     console.log('***dropped user data***');
 
-    await connection.query(createUserData);
+    await connection.promise().query(createUserData);
     console.log('***created user table***');
 
-    await connection.query(insertUserData, [firstUser]);
+    await connection.promise().query(insertUserData, [firstUser]);
     console.log('***first user saved***');
 
-    await connection.query(dropUserSavedRoutes);
+    await connection.promise().query(dropUserSavedRoutes);
     console.log('***dropped user saved routes***');
 
-    await connection.query(createUserSavedRoutes);
+    await connection.promise().query(createUserSavedRoutes);
     console.log('***created user saved routes table***');
 
-    await connection.query(insertUserSavedRoutes, [firstRoute]);
+    await connection.promise().query(insertUserSavedRoutes, [firstRoute]);
     console.log('***first saved route***');
 
-  } catch (err) {
+  } 
+  catch (err) {
     console.error(err);
     
   }
