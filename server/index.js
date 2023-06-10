@@ -1,44 +1,36 @@
-const express = require("express");
-const { createConnection } = require("mysql2/promise");
-const dotenv = require("dotenv");
-const cors = require("cors")
-const mysql = require('mysql2');
-
-dotenv.config();
-
+require('dotenv').config();
+const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 8080;
+const cors = require("cors")
+const PORT = process.env.DB_PORT || 8080 ;
 
-const startServer = async () => {
-    try {
-        const connection = await createConnection(process.env.DATABASE_URL);
 
-        // Add routes
-        const userRoutes = require("./routes/userRoutes")(connection);
-        const transitRoutesRoutes = require("./routes/transitRoutesRoutes")(connection);
+// This middleware implements Cross Origin Resource Sharing (CORS) 
+app.use(cors());
 
-        // This middleware allows to post JSON in request.body
-        app.use(express.json());
+const mysql = require('mysql2');
+const connection = mysql.createConnection(process.env.DATABASE_URL);
 
-        // This middleware implements Cross Origin Resource Sharing (CORS)
-        app.use(cors());
+connection.connect();
 
-        // Redirect incoming calls
-        app.use("/login", userRoutes);
-        app.use("/home", transitRoutesRoutes);
+// Add routes
+const userRoutes = require("./routes/userRoutes");
+const transitRoutesRoutes = require("./routes/transitRoutesRoutes");
 
-        // Handle undefined route
-        app.use((req, res, next) => {
-            res.status(404).send("Route not found.");
-        });
+// This middleware allows to post JSON in request.body
+app.use(express.json());
 
-        // Start the server listening
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
-    } catch (error) {
-        console.error("Failed to connect to the database:", error);
-    }
-};
+// Redirect incoming calls
+app.use("/login", userRoutes);
+app.use("/home", transitRoutesRoutes);
 
-startServer;
+// Handle undefined route
+app.use((req, res, next) => {
+  res.status(404).send("Route not found.");
+});
+
+// Start the server listening
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+

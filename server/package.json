@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node ./seed/seed.js",
     "start": "node index.js",
-    "dev": "npx nodemon index.js",
-    "db:migrate": "knex migrate:latest",
-    "db:seed": "knex seed:run"
+    "dev": "npx nodemon index.js"
   },
   "author": "SobczakL",
   "license": "ISC",
