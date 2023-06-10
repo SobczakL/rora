@@ -14,12 +14,12 @@ function UserProfileForm() {
     const [formData, setFormData] = useState({});
     // Handle error states
     const [formErrors, setFormErrors] = useState({
-        firstName: false,
-        LastName: false,
+        first_name: false,
+        last_name: false,
         email: false,
         phone: false,
-        cardNumber: false,
-        exDate: false,
+        card_number: false,
+        ex_date: false,
         cvc: false,
         zip: false,
     });
@@ -27,23 +27,23 @@ function UserProfileForm() {
     useEffect(() => {
         if (userDetailsData) {
             const {
-                firstName,
-                LastName,
+                first_name,
+                last_name,
                 email,
                 phone,
-                cardNumber,
-                exDate,
+                card_number,
+                ex_date,
                 cvc,
                 zip,
             } = userDetailsData[0];
 
             setFormData({
-                firstName,
-                LastName,
+                first_name,
+                last_name,
                 email,
                 phone,
-                cardNumber,
-                exDate,
+                card_number,
+                ex_date,
                 cvc,
                 zip,
             });
@@ -65,7 +65,7 @@ function UserProfileForm() {
                             inputHeader="First Name:"
                             type="text"
                             placeholder="John"
-                            value={formData.firstName}
+                            value={formData.first_name}
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,
@@ -77,7 +77,7 @@ function UserProfileForm() {
                             inputHeader="Last Name:"
                             type="text"
                             placeholder="Doe"
-                            value={formData.LastName}
+                            value={formData.last_name}
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,
@@ -112,7 +112,7 @@ function UserProfileForm() {
                         inputHeader="Card Number"
                         type="text"
                         placeholder="1234-1234-1234-1234"
-                        value={formData.cardNumber}
+                        value={formData.card_number}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
@@ -125,7 +125,7 @@ function UserProfileForm() {
                             inputHeader="Ex. Date"
                             type="text"
                             placeholder="01/01"
-                            value={formData.exDate}
+                            value={formData.ex_date}
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,
