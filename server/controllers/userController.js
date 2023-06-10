@@ -13,8 +13,8 @@ exports.userLogin = async (req, res) => {
         if (rows.length === 0) {
             res.status(404).json({ error: "USER_NOT_FOUND" });
         } else if (rows[0].password === password) {
-            const { firstName, username, password } = rows[0];
-            const payload = { firstName, username, password };
+            const { first_name, username, password } = rows[0];
+            const payload = { first_name, username, password };
             res.status(200).json(payload);
         } else {
             res.status(401).json({ error: "INCORRECT_PASSWORD" });

@@ -16,7 +16,7 @@ function Home() {
     //State for brining up the cardlist
     const [cardListVisible, setCardListVisible] = useState(false);
 
-    const userFirstName = JSON.parse(localStorage.getItem("firstName"));
+    const userFirstName = JSON.parse(localStorage.getItem("first_name"));
 
     const handleFocus = () => {
         setCardListVisible(!cardListVisible);
