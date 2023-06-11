@@ -12,11 +12,13 @@ exports.userLogin = async (req, res) => {
 
         if (rows.length === 0) {
             res.status(404).json({ error: "USER_NOT_FOUND" });
-        } else if (rows[0].password === password) {
+        } 
+        else if (rows[0].password === password) {
             const { first_name, username, password } = rows[0];
             const payload = { first_name, username, password };
             res.status(200).json(payload);
-        } else {
+        } 
+        else {
             res.status(401).json({ error: "INCORRECT_PASSWORD" });
         }
     } 
@@ -32,16 +34,15 @@ exports.getUserDetails = async(req, res) => {
       const query = 'SELECT * FROM userData WHERE username = ?';
       const [rows] = await connection.promise().query(query, [username]);
 
-      if (rows.length === 0) {
-        res.status(404).send("No user data found.");
-      } 
-      else {
-        res.status(200).json(rows);
-      }
-
+        if (rows.length === 0) {
+            res.status(404).send("No user data found.");
+        } 
+        else {
+            res.status(200).json(rows);
+        }
     } 
     catch (err) {
-      res.status(500).send(err.error);
+        res.status(500).send(err.error);
     } 
 };
 
@@ -57,11 +58,12 @@ exports.editUserDetails = async(req, res) => {
         cvc: data.cvc,
         zip: data.zip,
     };
-  try {
-    const query = 'UPDATE userData SET ? WHERE username = ?';
-    await connection.promise().query(query, [newUserDetails, username]);
-  } 
-  catch (err) {
-    res.status(500).send(err.error); 
-  }
+
+    try {
+        const query = 'UPDATE userData SET ? WHERE username = ?';
+        await connection.promise().query(query, [newUserDetails, username]);
+    } 
+    catch (err) {
+        res.status(500).send(err.error); 
+    }
 };

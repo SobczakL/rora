@@ -26,11 +26,11 @@ app.use("/home", transitRoutesRoutes);
 
 // Handle undefined route
 app.use((req, res, next) => {
-  res.status(404).send("Route not found.");
+    res.status(404).send("Route not found.");
 });
 
 // Start the server listening
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
 
