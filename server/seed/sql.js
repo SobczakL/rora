@@ -1,10 +1,12 @@
-export const dropUserData = 'DROP TABLE IF EXISTS userData'; 
-export const dropUserSavedRoutes = 'DROP TABLE IF EXISTS userSavedRoutes'; 
+const dropUserData = 'DROP TABLE IF EXISTS userData'; 
+const dropUserSavedRoutes = 'DROP TABLE IF EXISTS userSavedRoutes'; 
 
-export const insertUserSavedRoutes = 'INSERT INTO userSavedRoutes(id, username, routeId, routeNumber, routeHeading, routeName, routeType) VALUES ?';
-export const insertUserData = 'INSERT INTO userData(id, username, password, email, first_name, last_name, phone, card_number, ex_date, cvc, zip) VALUES ?';
+const insertUserSavedRoutes = 'INSERT INTO userSavedRoutes(id, username, routeId, routeNumber, routeHeading, routeName, routeType) VALUES (?, ?, ?, ?, ?, ?, ?)';
 
-export const createUserData = 'CREATE TABLE userData (
+const insertUserData = 'INSERT INTO userData(id, username, password, email, first_name, last_name, phone, card_number, ex_date, cvc, zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
+
+const createUserData = `CREATE TABLE userData (
   id CHAR(36) NOT NULL,
   PRIMARY KEY (id),
   username VARCHAR(40),
@@ -17,9 +19,9 @@ export const createUserData = 'CREATE TABLE userData (
   ex_date VARCHAR(5),
   cvc VARCHAR(3), 
   zip VARCHAR(6)
-)';
+)`;
 
-export const createUserSavedRoutes = 'CREATE TABLE userSavedRoutes (
+const createUserSavedRoutes = `CREATE TABLE userSavedRoutes (
   id CHAR(36) NOT NULL,
   PRIMARY KEY (id),
   username VARCHAR(40),
@@ -28,5 +30,15 @@ export const createUserSavedRoutes = 'CREATE TABLE userSavedRoutes (
   routeHeading VARCHAR(255), 
   routeName VARCHAR(255), 
   routeType VARCHAR(255)
-)';
+)`;
+
+module.exports = {
+  dropUserData,
+  dropUserSavedRoutes,
+  insertUserSavedRoutes,
+  insertUserData,
+  createUserData,
+  createUserSavedRoutes,
+};
+
 
