@@ -10,7 +10,7 @@ exports.getSavedRoutes = async(req, res) => {
         const [rows] = await connection.promise().query(query, [username]);
 
         if (rows.length === 0) {
-        res.status(404).send("No saved routes found for the user.");
+            res.status(404).send("No saved routes found for the user.");
         } 
         else {
         res.status(200).json(rows);
