@@ -1,26 +1,26 @@
 import axios from "axios";
 import { serverURL } from "./config";
 
-export function savedRouteChecker(username, routeId, callback) {
+export function savedRouteChecker(username, routeId) {
     axios
-        .post(`${serverURL}/home/verifySavedRoute`, {
+        .post(`${serverURL}/home/checkSavedRoutes`, {
             username: username,
             routeId: routeId,
         })
         .then((response) => {
-            callback(true);
+            return true;
         })
         .catch((error) => {
-            callback(false);
+            return false;
         });
 }
 
 export function saveNewRoute(data) {
-    axios.post(`${serverURL}/home/saveRoute`, data);
+    axios.post(`${serverURL}/home/saveRoutes`, data);
 }
 
 export function deleteSavedRoute(username, routeId) {
-    axios.post(`${serverURL}/home/deleteRoute`, {
+    axios.post(`${serverURL}/home/deleteRoutes`, {
         username: username,
         routeId: routeId,
     });

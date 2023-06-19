@@ -30,21 +30,21 @@ function RouteDetails() {
 
     const { routeDetailsData } = useGetRouteDetails(id);
 
-    const [isSaved, setIsSaved] = useState(null);
-
     const username = JSON.parse(localStorage.getItem("username"));
     const direction = JSON.parse(localStorage.getItem("direction"));
 
-    //Checks if the current route was previously saved
-    useEffect(() => {
-        const checkSavedRoute = () => {
-            savedRouteChecker(username, id, (result) => {
-                setIsSaved(result);
-            });
-        };
+    const [isSaved, setIsSaved] = useState(
+        async function verifySave() {
+            return await savedRouteChecker(username, id);
+        }
+    );
 
-        checkSavedRoute();
-    }, [isSaved]);
+    // //Checks if the current route was previously saved
+    // 
+    // useEffect(async() => {
+    //     const result = await savedRouteChecker(username, id)
+    //     setIsSaved(result);
+    // }, [isSaved]);
 
     // Toggle route updates
     const [isUpdate, setIsUpdate] = useState(false);
