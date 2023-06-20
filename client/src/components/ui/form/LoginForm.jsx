@@ -32,8 +32,6 @@ function LoginForm({ handleVerifyUser }) {
                 password: password,
             })
             .then((response) => {
-                console.log(response.data);
-                console.log("hello here")
                 localStorage.setItem(
                     "username",
                     JSON.stringify(response.data.username)
