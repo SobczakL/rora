@@ -16,6 +16,7 @@ exports.userLogin = async (req, res) => {
         else if (rows[0].password === password) {
             const { first_name, username, password } = rows[0];
             const payload = { first_name, username, password };
+            console.log(payload)
             res.status(200).json(payload);
         } 
         else {
