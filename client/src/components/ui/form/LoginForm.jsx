@@ -43,7 +43,7 @@ function LoginForm({ handleVerifyUser }) {
                 setTimeout(() => {
                     setIsLoading(false);
                     handleVerifyUser();
-                }, 4000);
+                }, 3000);
             })
             .catch((error) => {
                 if (error.response) {
