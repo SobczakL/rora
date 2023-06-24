@@ -1,13 +1,14 @@
-import {
-    Drawer,
-    DrawerBody,
-    DrawerContent,
-    DrawerOverlay,
-} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import RouteCard from "../../routeCard/RouteCard";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-function SearchResultsDrawer({ searchData, isOpen, onClose }) {
+const searchResultsVariants = {
+    visible: { y: 0, transition: {duration: 0.3}},
+    hidden: { y: "100%" },
+};
+
+function SearchResultsDrawer({ searchData, isOpen }) {
     const navigate = useNavigate();
 
     const uniqueDirectionHeadsigns =
@@ -27,42 +28,44 @@ function SearchResultsDrawer({ searchData, isOpen, onClose }) {
 
     if (searchData) {
         return (
-            <Drawer
-                placement="bottom"
-                onClose={onClose}
-                isOpen={isOpen}
-                minH="90vh"
+            <Box
+                position="absolute"
+                bottom="0"
+                left="0"
+                right="0"
+                overflowY="scroll"
+                zIndex="10"
             >
-                <DrawerOverlay />
-                <DrawerContent bg="deepNavy">
-                    {searchData &&
-                        uniqueDirectionHeadsigns.map((direction, index) => {
-                            return (
-                                <DrawerBody key={index}>
-                                    <RouteCard
-                                        onClick={() =>
-                                            handleRouteCardClick(
-                                                searchData[0].route
-                                                    .global_route_id,
-                                                direction
-                                            )
-                                        }
-                                        routeNumber={
-                                            searchData[0].route.route_short_name
-                                        }
-                                        routeHeadsign={direction}
-                                        routeName={
-                                            searchData[0].route.route_long_name
-                                        }
-                                        routeType={
-                                            searchData[0].route.route_type
-                                        }
-                                    />
-                                </DrawerBody>
-                            );
-                        })}
-                </DrawerContent>
-            </Drawer>
+                <Box
+                as={motion.div}
+                variants={searchResultsVariants}
+                initial={isOpen ? "visible" : "hidden"}
+                animate={isOpen ? "visible" : "hidden"}
+                >
+                    {uniqueDirectionHeadsigns.map((direction, index) => (
+                        <Box
+                            key={index}
+                            py="2"
+                            bg="lavender"
+                        >
+                            <RouteCard
+                                onClick={() =>
+                                    handleRouteCardClick(
+                                        searchData[0].route.global_route_id,
+                                        direction
+                                    )
+                                }
+                                routeNumber={
+                                    searchData[0].route.route_short_name
+                                }
+                                routeHeadsign={direction}
+                                routeName={searchData[0].route.route_long_name}
+                                routeType={searchData[0].route.route_type}
+                            />
+                        </Box>
+                    ))}
+                </Box>
+            </Box>
         );
     }
 }

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useNearbyRoutes from "../../services/useNearbyRoutes";
 import useGetSavedRoutes from "../../services/useGetSavedRoutes";
 
-function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
+function RouteCardList({ handleFocus, cardListVisible, isLoaded, handleChange, handleEnter, userInput }) {
     const navigate = useNavigate();
 
     const { nearbyData } = useNearbyRoutes();
@@ -17,8 +17,8 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
 
     //Variants for transitions
     const cardListVariants = {
-        visible: { y: "10vh", transition: { duration: 0.5 } },
-        hidden: { y: "45vh" },
+        visible: { y: "10vh", transition: { duration: 0.3 } },
+        hidden: { y: "40vh" },
     };
 
     const onFocus = () => {
@@ -39,8 +39,6 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
     };
 
     const handleRouteCardClick = (routeId, direction) => {
-        console.log(routeId)
-        console.log(direction)
         localStorage.setItem("direction", JSON.stringify(direction));
         navigate(`/home/${routeId}`);
     };
@@ -58,13 +56,16 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
                 onClick={onFocus}
                 handleButtonClick={handleButtonClick}
                 listType={listType}
+                userInput={userInput}
+                handleChange={handleChange}
+                handleEnter={handleEnter}
             />
             <Skeleton
                 startColor="darkNavy"
                 endColor="twilight"
                 isLoaded={isLoaded}
             >
-                <VStack mt="16px" spacing="2px" w="100%">
+                <VStack mt="16px" spacing="2px" w="100%" >
                     {listType === "nearby"
                         ? nearbyData &&
                           nearbyData.map((route, index) => {
@@ -116,7 +117,10 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
                                   <RouteCard
                                       key={index}
                                       onClick={() =>
-                                          handleRouteCardClick(route.routeId, route.routeHeading)
+                                          handleRouteCardClick(
+                                              route.routeId,
+                                              route.routeHeading
+                                          )
                                       }
                                       routeNumber={route.routeNumber}
                                       routeHeadsign={route.routeHeading}

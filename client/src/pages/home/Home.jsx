@@ -1,13 +1,16 @@
 import UserProfileContainer from "../../components/userProlileContainer/UserProfileContainer";
 import user3 from "../../assets/images/user3.jpg";
-import { Flex, Img, Box, Skeleton } from "@chakra-ui/react";
+import { Flex, Img, Box } from "@chakra-ui/react";
 import MainHeader from "../../components/mainHeader/MainHeader";
 import RouteCardList from "../../components/routeCardList/RouteCardList";
+import SearchResultsDrawer from "../../components/ui/drawer/SearchResultsDrawer";
 import { useState } from "react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../../utils/useLoading";
 import RoraLogo from "../../assets/logo/rora-secondary.svg";
+import axios from "axios";
+import { serverURL } from "../../services/config";
 
 function Home() {
     const isLoading = useLoading();
@@ -15,6 +18,32 @@ function Home() {
 
     //State for brining up the cardlist
     const [cardListVisible, setCardListVisible] = useState(false);
+
+    //State for search results
+    const [data, setData] = useState([]);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [userInput, setUserInput] = useState(null);
+
+    const handleChange = (event) => {
+        setUserInput(event.target.value);
+    };
+
+    const handleEnter = (event) => {
+        if (userInput !== "") {
+            axios
+                .post(`${serverURL}/home/search`, {
+                    searchInput: userInput,
+                })
+                .then((response) => {
+                    setData(response.data);
+                    setCardListVisible(true);
+                    setIsDrawerOpen(true);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    };
 
     const userFirstName = JSON.parse(localStorage.getItem("first_name"));
 
@@ -25,6 +54,7 @@ function Home() {
     const handleReset = () => {
         if (cardListVisible) {
             setCardListVisible(false);
+            setIsDrawerOpen(false)
         }
     };
 
@@ -66,6 +96,14 @@ function Home() {
                 handleFocus={handleFocus}
                 cardListVisible={cardListVisible}
                 isLoaded={isLoading}
+                userInput={userInput}
+                handleChange={handleChange}
+                handleEnter={handleEnter}
+            />
+            <SearchResultsDrawer
+                searchData={data}
+                isOpen={isDrawerOpen}
+                onClose={() => setIsDrawerOpen(false)}
             />
         </Flex>
     );
