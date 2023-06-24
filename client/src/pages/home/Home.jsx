@@ -4,7 +4,7 @@ import { Flex, Img, Box } from "@chakra-ui/react";
 import MainHeader from "../../components/mainHeader/MainHeader";
 import RouteCardList from "../../components/routeCardList/RouteCardList";
 import SearchResultsDrawer from "../../components/ui/drawer/SearchResultsDrawer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../../utils/useLoading";
@@ -54,13 +54,27 @@ function Home() {
     const handleReset = () => {
         if (cardListVisible) {
             setCardListVisible(false);
-            setIsDrawerOpen(false)
+            setIsDrawerOpen(false);
         }
     };
 
     const handleNavigate = () => {
         navigate("/home/user");
     };
+
+    useEffect(() => {
+        const handleClickOutsideDrawer = (event) => {
+            if (!event.target.closest("#outside-box-target")) {
+                setIsDrawerOpen(false);
+            }
+        };
+
+        window.addEventListener("click", handleClickOutsideDrawer);
+
+        return () => {
+            window.removeEventListener("click", handleClickOutsideDrawer);
+        };
+    }, []);
 
     return (
         <Flex
@@ -84,6 +98,7 @@ function Home() {
             <MainHeader userFirstName={userFirstName} loaded={isLoading} />
             <Box
                 position="absolute"
+                id="outside-box-target"
                 onClick={handleReset}
                 display={cardListVisible ? "block" : "none"}
                 w="85%"
@@ -95,6 +110,7 @@ function Home() {
             <RouteCardList
                 handleFocus={handleFocus}
                 cardListVisible={cardListVisible}
+                isDrawerOpen={isDrawerOpen}
                 isLoaded={isLoading}
                 userInput={userInput}
                 handleChange={handleChange}

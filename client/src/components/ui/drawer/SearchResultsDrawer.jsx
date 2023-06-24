@@ -1,10 +1,10 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import RouteCard from "../../routeCard/RouteCard";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const searchResultsVariants = {
-    visible: { y: 0, transition: {duration: 0.3}},
+    visible: { y: "-10px", transition: {duration: 0.3}},
     hidden: { y: "100%" },
 };
 
@@ -41,12 +41,12 @@ function SearchResultsDrawer({ searchData, isOpen }) {
                 variants={searchResultsVariants}
                 initial={isOpen ? "visible" : "hidden"}
                 animate={isOpen ? "visible" : "hidden"}
+                py="10px"
                 >
                     {uniqueDirectionHeadsigns.map((direction, index) => (
                         <Box
                             key={index}
-                            py="2"
-                            bg="lavender"
+                            py="5px"
                         >
                             <RouteCard
                                 onClick={() =>

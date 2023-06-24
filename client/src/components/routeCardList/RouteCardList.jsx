@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import useNearbyRoutes from "../../services/useNearbyRoutes";
 import useGetSavedRoutes from "../../services/useGetSavedRoutes";
 
-function RouteCardList({ handleFocus, cardListVisible, isLoaded, handleChange, handleEnter, userInput }) {
+function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, handleChange, handleEnter, userInput }) {
     const navigate = useNavigate();
 
     const { nearbyData } = useNearbyRoutes();
@@ -65,7 +65,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, handleChange, h
                 endColor="twilight"
                 isLoaded={isLoaded}
             >
-                <VStack mt="16px" spacing="2px" w="100%" >
+                <VStack mt="16px" spacing="5px" w="100%" >
                     {listType === "nearby"
                         ? nearbyData &&
                           nearbyData.map((route, index) => {
@@ -82,6 +82,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, handleChange, h
                               return (
                                   <RouteCard
                                       key={index}
+                                      isFocused={isDrawerOpen}
                                       onClick={() =>
                                           handleRouteCardClick(
                                               route.route_departures[0]
@@ -116,6 +117,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded, handleChange, h
                               return (
                                   <RouteCard
                                       key={index}
+                                      isFocused={isDrawerOpen}
                                       onClick={() =>
                                           handleRouteCardClick(
                                               route.routeId,
