@@ -29,7 +29,7 @@ function PrimaryButton({ innerText, handleButtonClick, icon, listType }) {
             {icon ? (
                 <Img
                     position="absolute"
-                    right="12px"
+                    right="10px"
                     src={icon}
                     ml="8px"
                     maxW="15px"

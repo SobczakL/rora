@@ -96,7 +96,7 @@ function RouteDetails() {
                 position="relative"
                 overflow="hidden"
                 direction="column"
-                gap="16px"
+                gap="8px"
                 zIndex="1"
                 py="16px"
                 h="100%"

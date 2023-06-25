@@ -25,6 +25,7 @@ function UserProfile() {
                     boxSize="32px"
                     color="snow"
                     onClick={handleClick}
+                    cursor="pointer"
                 />
             </Flex>
             <UserProfileForm />
