@@ -53,7 +53,7 @@ function RouteDetails() {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    //Mimics if an update were to be received from a service provider
+    // Mimics if an update were to be received from a service provider
     const incomingUpdate = () => {
         setTimeout(() => {
             setIsUpdate(true);
