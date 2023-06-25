@@ -6,8 +6,8 @@ import Home from "./pages/home/Home";
 import UserProfile from "./pages/userProfile/UserProfile";
 import Footer from "./components/footer/Footer";
 import RouteDetails from "./pages/routeDetails/RouteDetails";
-import PhoneBorder from "./components/phoneBorder/phoneBorder";
-import "../src/assets/fonts/fonts.css"
+import PhoneBorder from "./components/phoneBorder/PhoneBorder";
+import "../src/assets/fonts/fonts.css";
 
 function App() {
     return (
