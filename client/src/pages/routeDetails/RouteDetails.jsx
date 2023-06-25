@@ -1,5 +1,4 @@
-import { Box, Flex, Skeleton, useDisclosure } from "@chakra-ui/react";
-import RouteCard from "../../components/routeCard/RouteCard";
+import { Flex, Skeleton, useDisclosure } from "@chakra-ui/react";
 import RouteStopList from "../../components/routeStopList/RouteStopList";
 import TimeBadge from "../../components/ui/badge/TimeBadge";
 import UpdateButton from "../../components/ui/button/UpdateButton";
@@ -13,7 +12,7 @@ import {
     saveNewRoute,
     deleteSavedRoute,
 } from "../../services/manageSavedRoutes";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLoading } from "../../utils/useLoading";
 import getStopsAfterCurrentLocation from "../../utils/getStopsAfterCurrentLocation";
 import timeConverter from "../../utils/timeConverter";
@@ -39,13 +38,6 @@ function RouteDetails() {
         }
     );
 
-    // //Checks if the current route was previously saved
-    // 
-    // useEffect(async() => {
-    //     const result = await savedRouteChecker(username, id)
-    //     setIsSaved(result);
-    // }, [isSaved]);
-
     // Toggle route updates
     const [isUpdate, setIsUpdate] = useState(false);
 
@@ -67,7 +59,7 @@ function RouteDetails() {
     const incomingUpdate = () => {
         setTimeout(() => {
             setIsUpdate(true);
-        }, 7000);
+        }, 9000);
     };
 
     incomingUpdate();

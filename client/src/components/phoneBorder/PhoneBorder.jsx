@@ -3,8 +3,8 @@ function PhoneBorder({children}){
     return(
         <Flex
         pos="relative"
-        maxW="390px"
-        maxH="800px"
+        maxW="350px"
+        maxH="700px"
         direction="column"
         border="20px solid black"
         borderRadius="50px"
@@ -17,7 +17,6 @@ function PhoneBorder({children}){
             h="40px"
             right="32.5%"
             top="-15px"
-            // right="25%"
             backgroundColor="black"
             borderRadius="20px"
             />

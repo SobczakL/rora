@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const searchResultsVariants = {
-    visible: { y: "-10px", transition: {duration: 0.3}},
+    visible: { y: "0px", transition: {duration: 0.3}},
     hidden: { y: "100%" },
 };
 
@@ -35,6 +35,7 @@ function SearchResultsDrawer({ searchData, isOpen }) {
                 right="0"
                 overflowY="scroll"
                 zIndex="10"
+                h="35%"
             >
                 <Box
                 as={motion.div}

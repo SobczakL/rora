@@ -92,7 +92,7 @@ function Home() {
                 src={RoraLogo}
                 position="absolute"
                 display={isLoading ? "block" : "none"}
-                left="10%"
+                left="0"
                 top="15%"
             />
             <MainHeader userFirstName={userFirstName} loaded={isLoading} />
