@@ -7,7 +7,15 @@ import { useNavigate } from "react-router-dom";
 import useNearbyRoutes from "../../services/useNearbyRoutes";
 import useGetSavedRoutes from "../../services/useGetSavedRoutes";
 
-function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, handleChange, handleEnter, userInput }) {
+function RouteCardList({
+    handleFocus,
+    cardListVisible,
+    isDrawerOpen,
+    isLoaded,
+    handleChange,
+    handleEnter,
+    userInput,
+}) {
     const navigate = useNavigate();
 
     const { nearbyData } = useNearbyRoutes();
@@ -18,9 +26,8 @@ function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, h
     //Variants for transitions
     const cardListVariants = {
         visible: { y: "15%", transition: { duration: 0.3 } },
-        hidden: { y: "50%", },
-      };
-      
+        hidden: { y: "50%" },
+    };
 
     const onFocus = () => {
         handleFocus();
@@ -63,23 +70,23 @@ function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, h
             />
             <Skeleton
                 startColor="darkNavy"
+                mt="16px"
                 endColor="twilight"
                 isLoaded={isLoaded}
             >
-                <Flex 
-                direction="column" 
-                gap="5px" 
-                w="100%" 
-                mt="10px" 
-                py="8px"
-                h={cardListVisible ? "100%" : "175px"}
-                overflowY="scroll"
-                sx={{
-                    scrollbarWidth: "thin",
-                    "&::-webkit-scrollbar": {
-                        display: "none",
-                    },
-                }}
+                <Flex
+                    direction="column"
+                    gap="5px"
+                    w="100%"
+                    py="8px"
+                    h={cardListVisible ? "100%" : "175px"}
+                    overflowY="scroll"
+                    sx={{
+                        scrollbarWidth: "thin",
+                        "&::-webkit-scrollbar": {
+                            display: "none",
+                        },
+                    }}
                 >
                     {listType === "nearby"
                         ? nearbyData &&
