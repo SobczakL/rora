@@ -33,9 +33,8 @@ function SearchResultsDrawer({ searchData, isOpen }) {
                 bottom="0"
                 left="0"
                 right="0"
-                overflowY="scroll"
+                // overflowY="scroll"
                 zIndex="10"
-                h="35%"
             >
                 <Box
                 as={motion.div}

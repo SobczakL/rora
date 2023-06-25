@@ -18,7 +18,7 @@ function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, h
     //Variants for transitions
     const cardListVariants = {
         visible: { y: "15%", transition: { duration: 0.3 } },
-        hidden: { y: "35%", },
+        hidden: { y: "40%", },
       };
       
 

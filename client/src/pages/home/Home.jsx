@@ -4,7 +4,7 @@ import { Flex, Img, Box } from "@chakra-ui/react";
 import MainHeader from "../../components/mainHeader/MainHeader";
 import RouteCardList from "../../components/routeCardList/RouteCardList";
 import SearchResultsDrawer from "../../components/ui/drawer/SearchResultsDrawer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useLoading } from "../../utils/useLoading";
@@ -15,6 +15,8 @@ import { serverURL } from "../../services/config";
 function Home() {
     const isLoading = useLoading();
     const navigate = useNavigate();
+
+    const ref = useRef()
 
     //State for brining up the cardlist
     const [cardListVisible, setCardListVisible] = useState(false);
@@ -83,6 +85,7 @@ function Home() {
             direction="column"
             h="100%"
             zIndex="1"
+            ref={ref}
         >
             <UserProfileContainer
                 userImg={user3}
