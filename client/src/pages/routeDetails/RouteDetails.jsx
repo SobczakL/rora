@@ -1,4 +1,4 @@
-import { Flex, Skeleton, useDisclosure } from "@chakra-ui/react";
+import { Flex, Skeleton, useDisclosure, Box } from "@chakra-ui/react";
 import RouteStopList from "../../components/routeStopList/RouteStopList";
 import TimeBadge from "../../components/ui/badge/TimeBadge";
 import UpdateButton from "../../components/ui/button/UpdateButton";
@@ -32,11 +32,9 @@ function RouteDetails() {
     const username = JSON.parse(localStorage.getItem("username"));
     const direction = JSON.parse(localStorage.getItem("direction"));
 
-    const [isSaved, setIsSaved] = useState(
-        async function verifySave() {
-            return await savedRouteChecker(username, id);
-        }
-    );
+    const [isSaved, setIsSaved] = useState(async function verifySave() {
+        return await savedRouteChecker(username, id);
+    });
 
     // Toggle route updates
     const [isUpdate, setIsUpdate] = useState(false);
@@ -99,57 +97,73 @@ function RouteDetails() {
                 overflow="hidden"
                 direction="column"
                 gap="16px"
-                minH="90vh"
                 zIndex="1"
                 py="16px"
+                h="100%"
             >
-                <Skeleton
-                    startColor="darkNavy"
-                    endColor="twilight"
-                    isLoaded={isLoaded}
-                >
-                    <RouteDetailsCard
-                        routeNumber={routeDetailsData.route.route_short_name}
-                        routeName={routeDetailsData.route.route_long_name}
-                        routeType={routeDetailsData.route.route_type}
-                        routeHeadsign={JSON.parse(
-                            localStorage.getItem("direction")
-                        )}
-                        isSaved={isSaved}
-                        handleBack={handleBack}
-                        handleUpdate={handleUpdate}
-                    />
-                </Skeleton>
-                <Skeleton
-                    startColor="darkNavy"
-                    endColor="twilight"
-                    isLoaded={isLoaded}
-                >
-                    <Flex
-                        align="center"
-                        gap="16px"
-                        px="16px"
-                        justifyContent="center"
+                <Flex h="25%" direction="column" gap="16px">
+                    <Skeleton
+                        startColor="darkNavy"
+                        endColor="twilight"
+                        isLoaded={isLoaded}
                     >
-                        <TimeBadge innerText={nextDeparture} />
-                        <UpdateButton
-                            isUpdate={isUpdate}
-                            onClick={onOpen}
-                            innerText={modalType}
+                        <RouteDetailsCard
+                            routeNumber={
+                                routeDetailsData.route.route_short_name
+                            }
+                            routeName={routeDetailsData.route.route_long_name}
+                            routeType={routeDetailsData.route.route_type}
+                            routeHeadsign={JSON.parse(
+                                localStorage.getItem("direction")
+                            )}
+                            isSaved={isSaved}
+                            handleBack={handleBack}
+                            handleUpdate={handleUpdate}
                         />
-                        {toggleUpdate(modalType)}
-                    </Flex>
-                </Skeleton>
-                <Skeleton
-                    startColor="darkNavy"
-                    endColor="twilight"
-                    isLoaded={isLoaded}
+                    </Skeleton>
+                    <Skeleton
+                        startColor="darkNavy"
+                        endColor="twilight"
+                        isLoaded={isLoaded}
+                    >
+                        <Flex
+                            align="center"
+                            gap="16px"
+                            px="16px"
+                            justifyContent="center"
+                        >
+                            <TimeBadge innerText={nextDeparture} />
+                            <UpdateButton
+                                isUpdate={isUpdate}
+                                onClick={onOpen}
+                                innerText={modalType}
+                            />
+                            {toggleUpdate(modalType)}
+                        </Flex>
+                    </Skeleton>
+                </Flex>
+                <Box
+                    h="75%"
+                    overflowY="scroll"
+                    sx={{
+                        overflowY: "scroll",
+                        scrollbarWidth: "thin",
+                        "&::-webkit-scrollbar": {
+                            display: "none",
+                        },
+                    }}
                 >
-                    <RouteStopList
-                        direction={direction}
-                        data={routeDetailsDataSliced}
-                    />
-                </Skeleton>
+                    <Skeleton
+                        startColor="darkNavy"
+                        endColor="twilight"
+                        isLoaded={isLoaded}
+                    >
+                        <RouteStopList
+                            direction={direction}
+                            data={routeDetailsDataSliced}
+                        />
+                    </Skeleton>
+                </Box>
             </Flex>
         );
     }

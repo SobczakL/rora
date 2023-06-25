@@ -16,9 +16,6 @@ function RouteStopList({ data }) {
     });
 
     return (
-        <Box
-        overflowY="scroll"
-        >
         <Stepper
             index={activeStop}
             orientation="vertical"
@@ -54,7 +51,6 @@ function RouteStopList({ data }) {
                 </Step>
             ))}
         </Stepper>
-        </Box>
     );
 }
 
