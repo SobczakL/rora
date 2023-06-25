@@ -20,6 +20,7 @@ function LoginInput({
             _placeholder={{ color: "lavender", fontSize: "fs.labels" }}
             focusBorderColor="lavender"
             _focus={{ bg: "lavenderGrey" }}
+            _active={{ bg: "lavenderGrey" }}
             required
             type={type}
             onChange={onChange}

@@ -37,13 +37,13 @@ function LoginForm({ handleVerifyUser }) {
                     JSON.stringify(response.data.username)
                 );
                 localStorage.setItem(
-                    "firstName",
-                    JSON.stringify(response.data.firstName)
+                    "first_name",
+                    JSON.stringify(response.data.first_name)
                 );
                 setTimeout(() => {
                     setIsLoading(false);
                     handleVerifyUser();
-                }, 4000);
+                }, 3000);
             })
             .catch((error) => {
                 if (error.response) {

@@ -22,7 +22,7 @@ function DelayModal({ isOpen, onClose }) {
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} variant='xs' size="xs">
             <ModalOverlay />
             <ModalContent bg="lavenderGrey" color="snow">
                 <ModalHeader>Update to route:</ModalHeader>
@@ -55,7 +55,7 @@ function DelayModal({ isOpen, onClose }) {
                             Within the past 10 min, 80% of users are
                             experiencing delays
                         </Text>
-                        <Progress colorScheme="" value="" />
+                        <Progress colorScheme="blue" value={80} />
                     </ModalFooter>
                 )}
             </ModalContent>

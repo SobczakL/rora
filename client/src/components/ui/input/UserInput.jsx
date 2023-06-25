@@ -16,8 +16,9 @@ function UserInput({ inputHeader, type, placeholder, value, onChange }) {
                 value={value}
                 onChange={onChange}
                 type={type}
-                fontSize="fs.body.lg"
-                lineHeight="lh.body.lg"
+                // h="35px"
+                fontSize="fs.body.md"
+                lineHeight="lh.body.md"
                 bg="lavenderGrey"
                 color="snow"
                 borderColor="lavenderGrey"

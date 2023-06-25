@@ -20,6 +20,7 @@ function RouteCard({
     routeType,
     isSaved,
     onClick,
+    isFocused
 }) {
     const routeIcons = {
         0: tramIcon,
@@ -34,10 +35,14 @@ function RouteCard({
             direction="row"
             align="center"
             w="100%"
+            minH="60px"
+            h="60px"
             gap="4px"
             py="8px"
             px="16px"
-            bg="twilight"
+            border={!isFocused ? "none" : "1px"}
+            borderColor={!isFocused ? "none" : "twilight"}
+            bg={!isFocused ? "twilight" : "deepNavy"}
             _active={{ bg: "deepNavy" }}
             cursor="pointer"
         >
@@ -47,7 +52,11 @@ function RouteCard({
                 maxW="40px"
                 color="snow"
             />
-            <VStack spacing="0" align="start" w="100%" color="snow">
+            <VStack 
+            spacing="0" 
+            align="start" 
+            w="100%" 
+            color={!isFocused ? "snow" : "twilight"}>
                 <CardHeader p="0">
                     <Heading
                         fontFamily="latoB"

@@ -1,5 +1,5 @@
 import { ChevronLeftIcon } from "@chakra-ui/icons";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import SaveButton from "../../components/ui/button/SaveButton";
 import UserProfileForm from "../../components/ui/form/UserProfileForm";
 import { useNavigate } from "react-router-dom";
@@ -14,13 +14,11 @@ function UserProfile() {
     return (
         <Flex
             position="relative"
-            zIndex="0"
-            overflow="hidden"
             direction="column"
-            minH="90vh"
             bg="twilight"
             p="16px"
             gap="16px"
+            h="100%"
         >
             <Flex justify="space-between">
                 <ChevronLeftIcon

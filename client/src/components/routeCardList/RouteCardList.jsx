@@ -7,7 +7,15 @@ import { useNavigate } from "react-router-dom";
 import useNearbyRoutes from "../../services/useNearbyRoutes";
 import useGetSavedRoutes from "../../services/useGetSavedRoutes";
 
-function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
+function RouteCardList({
+    handleFocus,
+    cardListVisible,
+    isDrawerOpen,
+    isLoaded,
+    handleChange,
+    handleEnter,
+    userInput,
+}) {
     const navigate = useNavigate();
 
     const { nearbyData } = useNearbyRoutes();
@@ -17,8 +25,8 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
 
     //Variants for transitions
     const cardListVariants = {
-        visible: { y: "10vh", transition: { duration: 0.5 } },
-        hidden: { y: "45vh" },
+        visible: { y: "15%", transition: { duration: 0.3 } },
+        hidden: { y: "50%" },
     };
 
     const onFocus = () => {
@@ -39,8 +47,6 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
     };
 
     const handleRouteCardClick = (routeId, direction) => {
-        console.log(routeId)
-        console.log(direction)
         localStorage.setItem("direction", JSON.stringify(direction));
         navigate(`/home/${routeId}`);
     };
@@ -58,13 +64,30 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
                 onClick={onFocus}
                 handleButtonClick={handleButtonClick}
                 listType={listType}
+                userInput={userInput}
+                handleChange={handleChange}
+                handleEnter={handleEnter}
             />
             <Skeleton
                 startColor="darkNavy"
+                mt="16px"
                 endColor="twilight"
                 isLoaded={isLoaded}
             >
-                <VStack mt="16px" spacing="2px" w="100%">
+                <Flex
+                    direction="column"
+                    gap="5px"
+                    w="100%"
+                    py="8px"
+                    h={cardListVisible ? "100%" : "175px"}
+                    overflowY="auto"
+                    sx={{
+                        scrollbarWidth: "thin",
+                        "&::-webkit-scrollbar": {
+                            display: "none",
+                        },
+                    }}
+                >
                     {listType === "nearby"
                         ? nearbyData &&
                           nearbyData.map((route, index) => {
@@ -81,6 +104,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
                               return (
                                   <RouteCard
                                       key={index}
+                                      isFocused={isDrawerOpen}
                                       onClick={() =>
                                           handleRouteCardClick(
                                               route.route_departures[0]
@@ -115,8 +139,12 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
                               return (
                                   <RouteCard
                                       key={index}
+                                      isFocused={isDrawerOpen}
                                       onClick={() =>
-                                          handleRouteCardClick(route.routeId, route.routeHeading)
+                                          handleRouteCardClick(
+                                              route.routeId,
+                                              route.routeHeading
+                                          )
                                       }
                                       routeNumber={route.routeNumber}
                                       routeHeadsign={route.routeHeading}
@@ -127,7 +155,7 @@ function RouteCardList({ handleFocus, cardListVisible, isLoaded }) {
                               );
                           })
                         : null}
-                </VStack>
+                </Flex>
             </Skeleton>
         </Flex>
     );

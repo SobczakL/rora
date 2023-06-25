@@ -7,9 +7,9 @@ router.route("/").post(transitRoutesController.getNearbyRoutes);
 router.route("/search").post(transitRoutesController.searchRoutes);
 
 router.route("/savedRoutes").post(savedRoutesController.getSavedRoutes);
-router.route("/saveRoute").post(savedRoutesController.addSavedRoutes);
-router.route("/verifySavedRoute").post(savedRoutesController.checkSavedRoutes);
-router.route("/deleteRoute").post(savedRoutesController.deleteSavedRoutes);
+router.route("/saveRoutes").post(savedRoutesController.addSavedRoutes);
+router.route("/checkSavedRoutes").post(savedRoutesController.checkSavedRoutes);
+router.route("/deleteRoutes").post(savedRoutesController.deleteSavedRoutes);
 
 router.route("/:id").get(routeDetailsController.routeDetails);
 
