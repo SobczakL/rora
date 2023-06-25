@@ -58,8 +58,20 @@ function UserProfileForm() {
 
     if (userDetailsData) {
         return (
-            <FormControl>
-                <VStack gap="1">
+            <FormControl 
+            overflowY="scroll"
+            h="100%"
+            sx={{
+                overflowY: "scroll",
+                scrollbarWidth: "thin",
+                "&::-webkit-scrollbar": {
+                    display: "none",
+                },
+            }}
+            >
+                <VStack 
+                gap="1"
+                >
                     <Flex gap="16px">
                         <UserInput
                             inputHeader="First Name:"
@@ -107,7 +119,7 @@ function UserProfileForm() {
                     <ChangePassButton />
                 </VStack>
                 <Divider borderColor="darkNavy" m="16px" />
-                <VStack gap="4px">
+                <VStack gap="1">
                     <UserInput
                         inputHeader="Card Number"
                         type="text"
@@ -164,7 +176,7 @@ function UserProfileForm() {
                         backgroundPosition="center"
                         backgroundRepeat="no-repeat"
                         w="100%"
-                        h="150px"
+                        h="175px"
                     />
                 </VStack>
                 <SaveButton onClick={handleSave} />

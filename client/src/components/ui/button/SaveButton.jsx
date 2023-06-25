@@ -8,7 +8,7 @@ function SaveButton({ onClick }) {
             alignItems="center"
             px="40px"
             py="9px"
-            m="auto"
+            mx="auto"
             borderRadius="20px"
             fontFamily="latoB"
             fontSize="fs.labels"

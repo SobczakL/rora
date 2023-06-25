@@ -27,7 +27,7 @@ function App() {
                                     boxSizing="border-box"
                                     h="90%"
                                     px="24px"
-                                    py="24px"
+                                    pt="24px"
                                 >
                                     <BrowserRouter>
                                         <Routes>
