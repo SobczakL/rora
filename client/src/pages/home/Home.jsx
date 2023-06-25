@@ -81,7 +81,7 @@ function Home() {
             position="relative"
             overflow="hidden"
             direction="column"
-            minH="90vh"
+            h="100%"
             zIndex="1"
         >
             <UserProfileContainer

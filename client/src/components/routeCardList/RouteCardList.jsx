@@ -17,9 +17,10 @@ function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, h
 
     //Variants for transitions
     const cardListVariants = {
-        visible: { y: "11vh", transition: { duration: 0.3 } },
-        hidden: { y: "40vh" },
-    };
+        visible: { y: "15%", transition: { duration: 0.3 } },
+        hidden: { y: "35%", },
+      };
+      
 
     const onFocus = () => {
         handleFocus();
@@ -65,7 +66,7 @@ function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, h
                 endColor="twilight"
                 isLoaded={isLoaded}
             >
-                <VStack mt="16px" spacing="5px" w="100%" >
+                <Flex direction="column" gap="5px" w="100%" mt="10px">
                     {listType === "nearby"
                         ? nearbyData &&
                           nearbyData.map((route, index) => {
@@ -133,7 +134,7 @@ function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, h
                               );
                           })
                         : null}
-                </VStack>
+                </Flex>
             </Skeleton>
         </Flex>
     );

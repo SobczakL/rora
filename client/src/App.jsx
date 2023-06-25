@@ -25,7 +25,7 @@ function App() {
                         <Box
                         position="relative"
                         bg="deepNavy"
-                        maxH="100%"
+                        // maxH="100%"
                         w="100%"
                         boxSizing="border-box"
                         overflow="hidden"
