@@ -80,7 +80,7 @@ function RouteCardList({
                     w="100%"
                     py="8px"
                     h={cardListVisible ? "100%" : "175px"}
-                    overflowY="scroll"
+                    overflowY="auto"
                     sx={{
                         scrollbarWidth: "thin",
                         "&::-webkit-scrollbar": {

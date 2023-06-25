@@ -12,8 +12,13 @@ function Login() {
         navigate("/home");
     };
     return (
-        <Flex direction="column" gap="32px" py="72px" px="24px">
-            <Img src={roraLogo} px="16px" />
+        <Flex 
+        direction="column" 
+        gap="64px" 
+        pt="72px" 
+        px="24px" 
+        h="100%">
+            <Img src={roraLogo} px="8px" />
             <LoginForm handleVerifyUser={handleVerifyUser} />
         </Flex>
     );

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const searchResultsVariants = {
-    visible: { y: "0px", transition: {duration: 0.3}},
+    visible: { y: "0%", transition: {duration: 0.3}},
     hidden: { y: "100%" },
 };
 
@@ -45,7 +45,7 @@ function SearchResultsDrawer({ searchData, isOpen }) {
                     {uniqueDirectionHeadsigns.map((direction, index) => (
                         <Box
                             key={index}
-                            py="5px"
+                            mb="5px"
                         >
                             <RouteCard
                                 onClick={() =>
