@@ -14,13 +14,12 @@ function UserProfile() {
     return (
         <Flex
             position="relative"
-            zIndex="0"
-            overflow="hidden"
             direction="column"
-            minH="90vh"
             bg="twilight"
             p="16px"
             gap="16px"
+            overflow="scroll"
+            maxH="100%"
         >
             <Flex justify="space-between">
                 <ChevronLeftIcon

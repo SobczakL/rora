@@ -21,8 +21,10 @@ function PhoneBorder({ children }) {
             />
             <Flex
                 pos="relative"
-                flex="1"
-                overflowY="auto"
+                // flex="1"
+                h="100%"
+                // overflowY="auto"
+                direction="column"
             >
                 {children}
             </Flex>

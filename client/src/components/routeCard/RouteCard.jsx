@@ -35,6 +35,7 @@ function RouteCard({
             direction="row"
             align="center"
             w="100%"
+            minH="60px"
             gap="4px"
             py="8px"
             px="16px"

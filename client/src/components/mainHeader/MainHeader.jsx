@@ -7,7 +7,7 @@ function MainHeader({ userFirstName, loaded }) {
             as={motion.div}
             animate={{ opacity: loaded ? 0 : 1, scale: loaded ? 0 : 1 }}
             position="absolute"
-            top="125px"
+            top="100px"
             maxW="100%"
             mx="24px"
         >

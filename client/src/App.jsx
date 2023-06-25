@@ -11,48 +11,51 @@ import PhoneBorder from "./components/phoneBorder/phoneBorder";
 function App() {
     return (
         <>
-        <ChakraProvider theme={overrides}>
-            <Flex
-            justifyContent="center"
-            align="center"
-            h="100vh"
-            w="100vw"
-            backgroundColor="lavender"
-            >
-                <PhoneBorder
-                children = {
-                    <>
-                        <Box
-                        position="relative"
-                        bg="deepNavy"
-                        // maxH="100%"
-                        w="100%"
-                        boxSizing="border-box"
-                        overflow="hidden"
-                        px="24px"
-                        py="24px"
-                        >
-                            <BrowserRouter>
-                                <Routes>
-                                    <Route path="/" element={<Login />} />
-                                    <Route path="/home" element={<Home />} />
-                                    <Route
-                                        path="/home/user"
-                                        element={<UserProfile />}
-                                    />
-                                    <Route
-                                        path="/home/:id"
-                                        element={<RouteDetails />}
-                                    />
-                                </Routes>
-                            </BrowserRouter>
-                            <Footer />
-                        </Box>
-                    </>
-                }
-                /> 
-            </Flex>
-        </ChakraProvider>
+            <ChakraProvider theme={overrides}>
+                <Flex
+                    justifyContent="center"
+                    align="center"
+                    h="100vh"
+                    w="100vw"
+                    backgroundColor="lavender"
+                >
+                    <PhoneBorder
+                        children={
+                            <>
+                                <Box
+                                    bg="deepNavy"
+                                    boxSizing="border-box"
+                                    h="90%"
+                                    px="24px"
+                                    py="24px"
+                                >
+                                    <BrowserRouter>
+                                        <Routes>
+                                            <Route
+                                                path="/"
+                                                element={<Login />}
+                                            />
+                                            <Route
+                                                path="/home"
+                                                element={<Home />}
+                                            />
+                                            <Route
+                                                path="/home/user"
+                                                element={<UserProfile />}
+                                            />
+                                            <Route
+                                                path="/home/:id"
+                                                element={<RouteDetails />}
+                                            />
+                                        </Routes>
+                                    </BrowserRouter>
+                                </Box>
+                                <Footer />
+                            </>
+                        }
+                    />
+                </Flex>
+            </ChakraProvider>
         </>
     );
 }

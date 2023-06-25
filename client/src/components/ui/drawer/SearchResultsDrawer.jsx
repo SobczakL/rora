@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import RouteCard from "../../routeCard/RouteCard";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,6 @@ function SearchResultsDrawer({ searchData, isOpen }) {
                 bottom="0"
                 left="0"
                 right="0"
-                // overflowY="scroll"
                 zIndex="10"
             >
                 <Box

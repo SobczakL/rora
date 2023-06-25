@@ -101,6 +101,7 @@ function RouteDetails() {
                 gap="16px"
                 minH="90vh"
                 zIndex="1"
+                py="16px"
             >
                 <Skeleton
                     startColor="darkNavy"

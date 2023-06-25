@@ -18,7 +18,7 @@ function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, h
     //Variants for transitions
     const cardListVariants = {
         visible: { y: "15%", transition: { duration: 0.3 } },
-        hidden: { y: "40%", },
+        hidden: { y: "50%", },
       };
       
 
@@ -66,7 +66,21 @@ function RouteCardList({ handleFocus, cardListVisible, isDrawerOpen, isLoaded, h
                 endColor="twilight"
                 isLoaded={isLoaded}
             >
-                <Flex direction="column" gap="5px" w="100%" mt="10px">
+                <Flex 
+                direction="column" 
+                gap="5px" 
+                w="100%" 
+                mt="10px" 
+                py="8px"
+                h={cardListVisible ? "100%" : "175px"}
+                overflowY="scroll"
+                sx={{
+                    scrollbarWidth: "thin",
+                    "&::-webkit-scrollbar": {
+                        display: "none",
+                    },
+                }}
+                >
                     {listType === "nearby"
                         ? nearbyData &&
                           nearbyData.map((route, index) => {

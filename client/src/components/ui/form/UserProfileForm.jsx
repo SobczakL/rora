@@ -59,7 +59,7 @@ function UserProfileForm() {
     if (userDetailsData) {
         return (
             <FormControl>
-                <VStack position="relative" gap="4px">
+                <VStack gap="1">
                     <Flex gap="16px">
                         <UserInput
                             inputHeader="First Name:"
@@ -164,13 +164,12 @@ function UserProfileForm() {
                         backgroundPosition="center"
                         backgroundRepeat="no-repeat"
                         w="100%"
-                        h="200px"
+                        h="150px"
                     />
                 </VStack>
                 <SaveButton onClick={handleSave} />
             </FormControl>
         );
     }
-    return null;
 }
 export default UserProfileForm;

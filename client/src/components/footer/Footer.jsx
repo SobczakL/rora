@@ -4,18 +4,13 @@ function Footer() {
     return (
         <Flex
             bg="deepNavy"
-            h="10vh"
-            pb="40px"
+            h="10%"
             color="lavenderGrey"
             fontSize="11px"
-            justify="center"
-            alignItems="center"
-            pos="absolute"
-            bottom="0"
-            pt="40px"
+            align="center"
             w="100%"
         >
-            <Text w="100%">© Röra Inc. All Rights Reserved.</Text>
+            <Text align="center" w="100%">© Röra Inc. All Rights Reserved.</Text>
         </Flex>
     );
 }
