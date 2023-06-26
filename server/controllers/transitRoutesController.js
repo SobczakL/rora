@@ -13,7 +13,7 @@ exports.getNearbyRoutes = (req, res) => {
             {
                 headers: {
                     apiKey:
-                        "7a24d152ab61c207fb15f519b96e64026bdcc20a6eb6c5cb215386c9438f7109",
+                        process.env.LOCAL_TRANSIT_API_KEY,
                 },
             }
         )
@@ -32,7 +32,7 @@ exports.getNearbyRoutes = (req, res) => {
                         {
                             headers: {
                                 apiKey:
-                                    "7a24d152ab61c207fb15f519b96e64026bdcc20a6eb6c5cb215386c9438f7109",
+                                process.env.LOCAL_TRANSIT_API_KEY,
                             },
                         }
                     )
@@ -73,7 +73,7 @@ exports.searchRoutes = (req, res) => {
             {
                 headers: {
                     apiKey:
-                        "7a24d152ab61c207fb15f519b96e64026bdcc20a6eb6c5cb215386c9438f7109",
+                        process.env.LOCAL_TRANSIT_API_KEY,
                 },
             }
         )
@@ -102,7 +102,7 @@ exports.searchRoutes = (req, res) => {
                         {
                             headers: {
                                 apiKey:
-                                    "7a24d152ab61c207fb15f519b96e64026bdcc20a6eb6c5cb215386c9438f7109",
+                                    process.env.LOCAL_TRANSIT_API_KEY,
                             },
                         }
                     )
