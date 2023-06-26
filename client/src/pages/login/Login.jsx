@@ -9,7 +9,12 @@ function Login() {
     const { location, locationError } = useLocation();
 
     const handleVerifyUser = () => {
-        navigate("/home");
+        if(!location){
+            alert(locationError);
+        }
+        else{
+            navigate("/home");
+        }
     };
     return (
         <Flex 

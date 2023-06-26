@@ -1,4 +1,5 @@
 const axios = require("axios");
+require('dotenv').config();
 
 //limit stop processing to manage api rate limit
 const max_stop_size = 3;
