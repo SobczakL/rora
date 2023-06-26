@@ -2,6 +2,7 @@
 
 Rora is an all-in-one transit app, allowing users access to on-time transit scheduling, community engagement, and payment processing (TBD).
 
+https://rora.vercel.app/
 ---
 
 ## Usage:
