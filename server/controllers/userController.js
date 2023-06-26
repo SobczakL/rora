@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+const mysql = require("mysql2");
 const connection = mysql.createConnection(process.env.DATABASE_URL);
 
 connection.connect();
@@ -12,41 +12,36 @@ exports.userLogin = async (req, res) => {
 
         if (rows.length === 0) {
             res.status(404).json({ error: "USER_NOT_FOUND" });
-        } 
-        else if (rows[0].password === password) {
+        } else if (rows[0].password === password) {
             const { first_name, username, password } = rows[0];
             const payload = { first_name, username, password };
             res.status(200).json(payload);
-        } 
-        else {
+        } else {
             res.status(401).json({ error: "INCORRECT_PASSWORD" });
         }
-    } 
-    catch (err) {
+    } catch (err) {
         res.status(500).json({ error: "INTERNAL_SERVER_ERROR" });
     }
 };
 
-exports.getUserDetails = async(req, res) => {
+exports.getUserDetails = async (req, res) => {
     const { username } = req.body;
 
     try {
-      const query = 'SELECT * FROM userData WHERE username = ?';
-      const [rows] = await connection.promise().query(query, [username]);
+        const query = "SELECT * FROM userData WHERE username = ?";
+        const [rows] = await connection.promise().query(query, [username]);
 
         if (rows.length === 0) {
             res.status(404).send("No user data found.");
-        } 
-        else {
+        } else {
             res.status(200).json(rows);
         }
-    } 
-    catch (err) {
+    } catch (err) {
         res.status(500).send(err.error);
-    } 
+    }
 };
 
-exports.editUserDetails = async(req, res) => {
+exports.editUserDetails = async (req, res) => {
     const { username, data } = req.body;
     const newUserDetails = {
         first_name: data.firstName,
@@ -60,10 +55,9 @@ exports.editUserDetails = async(req, res) => {
     };
 
     try {
-        const query = 'UPDATE userData SET ? WHERE username = ?';
+        const query = "UPDATE userData SET ? WHERE username = ?";
         await connection.promise().query(query, [newUserDetails, username]);
-    } 
-    catch (err) {
-        res.status(500).send(err.error); 
+    } catch (err) {
+        res.status(500).send(err.error);
     }
 };
