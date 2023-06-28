@@ -6,12 +6,12 @@ import useLocation from "../../utils/useLocation";
 
 function Login() {
     const navigate = useNavigate();
-    const { location, locationError } = useLocation();
+    let { location, locationError } = useLocation();
 
     const handleVerifyUser = () => {
         if(!location){
-            alert(locationError);
-            const currentLocation = {
+            // alert(locationError);
+            const location = {
                 latitude: 43.634175037674915,
                 longitude: -79.41226598221367
             };
