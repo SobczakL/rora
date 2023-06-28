@@ -11,6 +11,15 @@ function Login() {
     const handleVerifyUser = () => {
         if(!location){
             alert(locationError);
+            const currentLocation = {
+                latitude: 43.634175037674915,
+                longitude: -79.41226598221367
+            };
+            setLocation(currentLocation);
+            localStorage.setItem(
+                "location",
+                JSON.stringify(currentLocation)
+            );
         }
         else{
             navigate("/home");
