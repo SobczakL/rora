@@ -19,6 +19,7 @@ function Login() {
                 "location",
                 JSON.stringify(location)
             );
+            navigate("/home")
         }
         else{
             navigate("/home");
