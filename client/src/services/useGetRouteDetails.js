@@ -16,6 +16,7 @@ function useGetRouteDetails(id) {
             })
             .catch((error) => {
                 setRouteDetailsError(error);
+                console.log(error)
             })
             .finally(() => {
                 setRouteDetailsLoading(false);
