@@ -17,7 +17,7 @@ function Login() {
             };
             localStorage.setItem(
                 "location",
-                JSON.stringify(currentLocation)
+                JSON.stringify(location)
             );
         }
         else{
