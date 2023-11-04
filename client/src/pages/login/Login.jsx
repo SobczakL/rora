@@ -1,11 +1,13 @@
-import { Flex, Img} from "@chakra-ui/react";
+import { Flex, Img, useDisclosure} from "@chakra-ui/react";
 import roraLogo from "../../assets/logo/rora-main.svg";
 import LoginForm from "../../components/ui/form/LoginForm";
 import { useNavigate } from "react-router-dom";
 import useLocation from "../../utils/useLocation";
 import { useDelayedValue } from "../../utils/useDelayedValue"
-import LoginModal from "../../components/ui/modal/LoginModal";
+import LoginModal from "../../components/ui/modal/NewUserModal";
 import TestUserButton from "../../components/ui/button/TestUserButton";
+import { useEffect, useState } from "react";
+import NewUserModal from "../../components/ui/modal/NewUserModal";
 
 function Login() {
     const navigate = useNavigate();
@@ -23,6 +25,21 @@ function Login() {
     //Delayed time for new user button to show to user
     const delay = useDelayedValue(false, 3000);
 
+    //New user test account details launch
+    const [newUserDetails, SetNewUserDetails] = useState(false);
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    
+    const handleNewUserClick = () =>{
+        // if(newUserDetails === true){
+        //     return <NewUserModal isOpen={isOpen} onClose={onClose} />
+        // }
+        SetNewUserDetails(!newUserDetails);
+    }
+
+    useEffect(() => {
+        console.log(newUserDetails)        
+    }, [newUserDetails])
     return (
         <Flex 
         direction="column" 
@@ -37,8 +54,15 @@ function Login() {
             {delay && (
                 <TestUserButton 
                 innerText="Not a user yet?"
+                onClick={handleNewUserClick}
                 />
             )}
+            {/* {newUserDetails && (
+                <NewUserModal 
+                isOpen={isOpen}
+                onClose={onClose}
+                />
+            )} */}
         </Flex>
     );
 }

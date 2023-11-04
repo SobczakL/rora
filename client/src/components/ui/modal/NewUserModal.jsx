@@ -11,10 +11,10 @@ import {
     useDisclosure
 } from "@chakra-ui/react";
 
-function LoginModal({}) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+function NewUserModal({isOpen, onClose}) {
+
     return (
-        <Modal isOpen={true} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
                 <ModalHeader>Not a Rora user yet?</ModalHeader>
@@ -37,5 +37,5 @@ function LoginModal({}) {
     );
 }
 
-export default LoginModal;
+export default NewUserModal;
 
