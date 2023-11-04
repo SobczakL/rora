@@ -25,7 +25,7 @@ function useLocation() {
                         );
                     },
                     (error) => {
-                        setLocationError(error);
+                        setLocationError("Please enable geolocation within your browser.");
                     }
                 );
             } else {

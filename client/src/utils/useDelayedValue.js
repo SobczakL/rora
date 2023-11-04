@@ -5,7 +5,7 @@ export function useDelayedValue(initialValue, delay) {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            setValue(false);
+            setValue(!initialValue);
         }, delay);
         return () => {
             clearTimeout(timeout);

@@ -1,4 +1,4 @@
-import { Flex, Skeleton, VStack } from "@chakra-ui/react";
+import { Flex, Skeleton, } from "@chakra-ui/react";
 import RouteSearchPanel from "../routeSearchPanel/RouteSearchPanel";
 import RouteCard from "../routeCard/RouteCard";
 import { motion } from "framer-motion";

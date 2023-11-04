@@ -88,9 +88,14 @@ function RouteDetails() {
         const routeDetailsDataSliced = getStopsAfterCurrentLocation(
             routeDetailsData
         );
-        const nextDeparture = timeConverter(
-            routeDetailsDataSliced[0].next_departure.departure_time
-        );
+        let nextDeparture = null;
+        let formattedTime = null;
+
+        if(routeDetailsDataSliced && routeDetailsDataSliced.length > 0){
+            nextDeparture = routeDetailsDataSliced[0].next_departure?.departure_time
+            formattedTime = timeConverter(nextDeparture)
+        }
+        if(routeDetailsDataSliced && nextDeparture){
         return (
             <Flex
                 position="relative"
@@ -132,7 +137,7 @@ function RouteDetails() {
                             px="16px"
                             justifyContent="center"
                         >
-                            <TimeBadge innerText={nextDeparture} />
+                            <TimeBadge innerText={5} />
                             <UpdateButton
                                 isUpdate={isUpdate}
                                 onClick={onOpen}
@@ -166,6 +171,7 @@ function RouteDetails() {
                 </Box>
             </Flex>
         );
+        }
     }
 }
 
