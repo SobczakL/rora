@@ -15,7 +15,7 @@ function PhoneBorder({ children }) {
                 zIndex="1"
                 w="125px"
                 h="40px"
-                right="32.5%"
+                right="30%"
                 top="-15px"
                 backgroundColor="black"
                 borderRadius="20px"
