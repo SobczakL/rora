@@ -23,10 +23,10 @@ function Login() {
     };
 
     //Delayed time for new user button to show to user
-    const delay = useDelayedValue(false, 3000);
+    const delay = useDelayedValue(false, 4000);
 
     //New user test account details launch
-    const [newUserDetails, SetNewUserDetails] = useState(false);
+    const [newUserDetails, SetNewUserDetails] = useState(delay);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     
@@ -35,11 +35,9 @@ function Login() {
         //     return <NewUserModal isOpen={isOpen} onClose={onClose} />
         // }
         SetNewUserDetails(!newUserDetails);
+        // console.log(newUserDetails)
     }
 
-    useEffect(() => {
-        console.log(newUserDetails)        
-    }, [newUserDetails])
     return (
         <Flex 
         direction="column" 
@@ -51,18 +49,13 @@ function Login() {
         >
             <Img src={roraLogo} px="8px" />
             <LoginForm handleVerifyUser={handleVerifyUser} />
-            {delay && (
-                <TestUserButton 
+            <TestUserButton 
                 innerText="Not a user yet?"
                 onClick={handleNewUserClick}
-                />
+                /> 
+            { delay && (
+                <NewUserModal delay={delay}/>
             )}
-            {/* {newUserDetails && (
-                <NewUserModal 
-                isOpen={isOpen}
-                onClose={onClose}
-                />
-            )} */}
         </Flex>
     );
 }

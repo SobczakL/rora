@@ -10,25 +10,39 @@ import {
     VStack,
     useDisclosure
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
-function NewUserModal({isOpen, onClose}) {
+function NewUserModal({delay}) {
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    useEffect(() => {
+        if(delay){
+            onOpen();
+        }
+    }, [delay])
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent>
-                <ModalHeader>Not a Rora user yet?</ModalHeader>
+            <ModalContent bg="lavenderGrey" color="snow">
+                <ModalHeader>Welcome to the Röra Demo!</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <Text>
-                        Please login using the below details to explore Rora:
-                    </Text>
                     <VStack mt="16px" align="right">
                         <Text>
-                            Username: SobczakL
+                            To experience our transit app demo, please continue to our sign up page by selecting the new user button at the bottom of the login page.
+                        </Text>
+                        <Text>
+                            Alternatively, you may also login in using the below credentials which may limit your user experience as they are intended for test purposes only. 
+                        </Text>
+                    </VStack>
+                    <VStack mt="16px" align="right">
+                        <Text>
+                            Username: Rora
                         </Text>      
                         <Text>
-                            Password: password
+                            Password: futureuser
                         </Text>
                     </VStack>
                 </ModalBody>
