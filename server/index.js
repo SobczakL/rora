@@ -2,21 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require("cors")
+const { PrismaClient } = require('@prisma/client')
+
+const prisma = new PrismaClient();
+
 const PORT = process.env.DB_PORT || 8080 ;
 
-const mysql = require('mysql2');
-const connection = mysql.createConnection(process.env.DATABASE_URL);
-
-connection.connect();
-
-// This middleware implements Cross Origin Resource Sharing (CORS) 
+// Middleware
 app.use(cors());
-// Add routes
+app.use(express.json());
+
+// Routes
 const userRoutes = require("./routes/userRoutes");
 const transitRoutesRoutes = require("./routes/transitRoutesRoutes");
-
-// This middleware allows to post JSON in request.body
-app.use(express.json());
 
 // Redirect incoming calls
 app.use("/login", userRoutes);

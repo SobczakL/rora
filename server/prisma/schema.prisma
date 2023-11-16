@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model userData {
+  id          String  @id @db.Char(36)
+  username    String? @db.VarChar(40)
+  password    String? @db.VarChar(255)
+  email       String? @db.VarChar(255)
+  first_name  String? @db.VarChar(255)
+  last_name   String? @db.VarChar(255)
+  phone       String? @db.VarChar(30)
+  card_number String? @db.VarChar(25)
+  ex_date     String? @db.VarChar(5)
+  cvc         String? @db.VarChar(3)
+  zip         String? @db.VarChar(6)
+}
+
+model userSavedRoutes {
+  id           String  @id @db.Char(36)
+  username     String? @db.VarChar(40)
+  routeId      String? @db.VarChar(255)
+  routeNumber  String? @db.VarChar(255)
+  routeHeading String? @db.VarChar(255)
+  routeName    String? @db.VarChar(255)
+  routeType    String? @db.VarChar(255)
+}
