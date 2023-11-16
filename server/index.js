@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 
 const PORT = process.env.DB_PORT || 8080 ;
 
+
 // Middleware
 app.use(cors());
 app.use(express.json());
