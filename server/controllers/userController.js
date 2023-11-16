@@ -22,7 +22,7 @@ exports.userLogin = async (req, res) => {
     }
 };
 
-eexports.getUserDetails = async (req, res) => {
+exports.getUserDetails = async (req, res) => {
     const { username } = req.body;
 
     try {
