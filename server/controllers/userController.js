@@ -1,19 +1,17 @@
-const mysql = require("mysql2");
-const connection = mysql.createConnection(process.env.DATABASE_URL);
-
-connection.connect();
-
 exports.userLogin = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const query = `SELECT * FROM userData WHERE username = ?`;
-        const [rows] = await connection.promise().query(query, [username]);
-
-        if (rows.length === 0) {
+        const user = await prisma.userData.findUnique({
+            where:{
+                username: username
+            }
+        })
+        
+        if (!user) {
             res.status(404).json({ error: "USER_NOT_FOUND" });
-        } else if (rows[0].password === password) {
-            const { first_name, username, password } = rows[0];
+        } else if (user.password === password) {
+            const { first_name, username, password } = user;
             const payload = { first_name, username, password };
             res.status(200).json(payload);
         } else {
@@ -24,40 +22,48 @@ exports.userLogin = async (req, res) => {
     }
 };
 
-exports.getUserDetails = async (req, res) => {
+eexports.getUserDetails = async (req, res) => {
     const { username } = req.body;
 
     try {
-        const query = "SELECT * FROM userData WHERE username = ?";
-        const [rows] = await connection.promise().query(query, [username]);
+        const userData = await prisma.userData.findMany({
+            where: {
+                username: username
+            }
+        });
 
-        if (rows.length === 0) {
+        if (userData.length === 0) {
             res.status(404).send("No user data found.");
         } else {
-            res.status(200).json(rows);
+            res.status(200).json(userData);
         }
     } catch (err) {
-        res.status(500).send(err.error);
+        res.status(500).send(err.message);
     }
 };
 
 exports.editUserDetails = async (req, res) => {
     const { username, data } = req.body;
-    const newUserDetails = {
-        first_name: data.firstName,
-        last_name: data.lastName,
-        email: data.email,
-        phone: data.phone,
-        card_number: data.cardNumber,
-        ex_date: data.exDate,
-        cvc: data.cvc,
-        zip: data.zip,
-    };
 
     try {
-        const query = "UPDATE userData SET ? WHERE username = ?";
-        await connection.promise().query(query, [newUserDetails, username]);
+        await prisma.userData.update({
+            where: {
+                username: username
+            },
+            data: {
+                first_name: data.firstName,
+                last_name: data.lastName,
+                email: data.email,
+                phone: data.phone,
+                card_number: data.cardNumber,
+                ex_date: data.exDate,
+                cvc: data.cvc,
+                zip: data.zip
+            }
+        });
+
+        res.status(200).send("User details updated successfully.");
     } catch (err) {
-        res.status(500).send(err.error);
+        res.status(500).send(err.message);
     }
 };
