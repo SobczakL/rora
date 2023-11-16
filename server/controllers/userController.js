@@ -1,3 +1,7 @@
+const { PrismaClient } = require('@prisma/client')
+//connect prisma
+const prisma = new PrismaClient();
+
 exports.userLogin = async (req, res) => {
     const { username, password } = req.body;
 
