@@ -1,6 +1,4 @@
-const { PrismaClient } = require('@prisma/client')
-//connect prisma
-const prisma = new PrismaClient();
+import prisma from "../lib/prisma"
 
 exports.userLogin = async (req, res) => {
     const { username, password } = req.body;

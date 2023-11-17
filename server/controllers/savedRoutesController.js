@@ -1,45 +1,50 @@
-const { v4: uuidv4 } = require("uuid");
-const mysql = require('mysql2');
-const connection = mysql.createConnection(process.env.DATABASE_URL);
-connection.connect();
+import prisma from "../lib/prisma";
 
-exports.getSavedRoutes = async(req, res) => {
+exports.getSavedRoutes = async (req, res) => {
     const { username } = req.body;
-    try {
-        const query = 'SELECT * FROM userSavedRoutes WHERE username = ?' 
-        const [rows] = await connection.promise().query(query, [username]);
 
-        if (rows.length === 0) {
+    try {
+        const routes = await prisma.userSavedRoutes.findMany({
+            where: {
+                username: username,
+            },
+        });
+
+        if (routes.length === 0) {
             res.status(404).send("No saved routes found for the user.");
-        } 
-        else {
-        res.status(200).json(rows);
+        } else {
+            res.status(200).json(routes);
         }
-    } 
-    catch (err) {
+    } catch (err) {
         res.status(500).send(err);
-    };
+    }
 };
 
-exports.checkSavedRoutes = async(req, res) => {
+exports.checkSavedRoutes = async (req, res) => {
     const { username, routeId } = req.body;
+
     try {
-        const query = 'SELECT * FROM userSavedRoutes WHERE username = ? AND WHERE routeId = ?' 
-        const [rows] = await connection.promise().query(query, [username, routeId]);
-        if (rows.length === 0) {
+        const route = await prisma.userSavedRoutes.findUnique({
+            where: {
+                username_routeId: {
+                    username: username,
+                    routeId: routeId,
+                },
+            },
+        });
+
+        if (!route) {
             res.status(404).send("No saved routes found for the user.");
-        } 
-        else {
-            res.status(200).json(rows);
+        } else {
+            res.status(200).json(route);
         }
-    } 
-    catch (err) {
+    } catch (err) {
         res.status(500).send(err);
         console.log(err);
-    };
+    }
 };
 
-exports.addSavedRoutes = async(req, res) => {
+exports.addSavedRoutes = async (req, res) => {
     const {
         username,
         routeNumber,
@@ -49,44 +54,44 @@ exports.addSavedRoutes = async(req, res) => {
         routeType,
     } = req.body;
 
-    const id = uuidv4();
-
-    const newRoute = {
-        id,
-        username,
-        routeNumber,
-        routeName,
-        routeHeading,
-        routeId,
-        routeType,
-    };
-
-    const query = 'INSERT INTO userSavedRoutes SET ?' 
-    const [rows] = await connection.promise().query(query, [newRoute]);
-  
     try {
-        res.status(201).send("Route saved")
-    } 
-    catch (err) {
-        res.status(500).send(err) 
-    };
+        const newRoute = await prisma.userSavedRoutes.create({
+            data: {
+                id: uuidv4(),
+                username: username,
+                routeNumber: routeNumber,
+                routeName: routeName,
+                routeHeading: routeHeading,
+                routeId: routeId,
+                routeType: routeType,
+            },
+        });
+
+        res.status(201).send("Route saved");
+    } catch (err) {
+        res.status(500).send(err);
+    }
 };
 
-exports.deleteSavedRoutes = async(req, res) => {
+exports.deleteSavedRoutes = async (req, res) => {
     const { username, routeId } = req.body;
 
-    const query = 'DELETE FROM userSavedRoutes WHERE username = ? AND routeId = ?' 
-    const [rows] = await connection.promise().query(query, [username, routeId]);
-
     try {
-        if(rows == 0){
-            res.status(404).send("Route not found")
-        } 
-        else {
-            res.status(200).send("Route deleted")
+        const deletedRoute = await prisma.userSavedRoutes.deleteMany({
+            where: {
+                username_routeId: {
+                    username: username,
+                    routeId: routeId,
+                },
+            },
+        });
+
+        if (deletedRoute.count === 0) {
+            res.status(404).send("Route not found");
+        } else {
+            res.status(200).send("Route deleted");
         }
-    } 
-    catch (err) {
+    } catch (err) {
         res.status(500).send(err);
-    };
+    }
 };
