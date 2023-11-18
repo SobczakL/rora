@@ -1,4 +1,4 @@
-import prisma from "../lib/prisma";
+const { prisma } = require('../lib/prisma')
 
 exports.getSavedRoutes = async (req, res) => {
     const { username } = req.body;

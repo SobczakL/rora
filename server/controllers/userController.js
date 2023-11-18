@@ -1,4 +1,4 @@
-import prisma from "../lib/prisma"
+const { prisma } = require('../lib/prisma')
 
 exports.userLogin = async (req, res) => {
     const { username, password } = req.body;
