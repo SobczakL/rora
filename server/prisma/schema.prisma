@@ -8,6 +8,22 @@ datasource db {
   relationMode = "prisma"
 }
 
+model user {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  username   String   @db.VarChar(40)
+  password   String   @db.VarChar(255)
+  email      String?  @db.VarChar(255)
+  firstName  String?  @map("first_name") @db.VarChar(255)
+  lastName   String?  @map("last_name") @db.VarChar(255)
+  phone      Int      @db.Int()
+  cardNumber Int      @map("card_number") @db.Int()
+  exDate     String   @db.VarChar(5)
+  cvc        Int      @db.Int()
+  zip        String   @db.VarChar(6)
+}
+
 model userData {
   id          String  @id @db.Char(36)
   username    String? @db.VarChar(40)

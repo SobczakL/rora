@@ -1,10 +1,10 @@
-const { prisma } = require('../lib/prisma')
+const prisma = require('../lib/prisma');
 
 exports.getSavedRoutes = async (req, res) => {
     const { username } = req.body;
 
     try {
-        const routes = await prisma.userSavedRoutes.findMany({
+        const routes = await prisma.user.findMany({
             where: {
                 username: username,
             },
