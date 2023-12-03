@@ -2,7 +2,6 @@ const prisma = require('../lib/prisma')
 
 exports.getUserDetails = async (req, res) => {
     const { username } = req.body;
-
     try {
         const user = await prisma.user.findMany({
             where: {

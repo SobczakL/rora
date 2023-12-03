@@ -1,6 +1,5 @@
 import { Divider, Flex, FormControl, VStack, Box } from "@chakra-ui/react";
 import UserInput from "../input/UserInput";
-import ChangePassButton from "../button/ChangePassButton";
 import RoraCard from "../../../assets/images/roraCard.svg";
 import SaveButton from "../button/SaveButton";
 import useUserDetails from "../../../services/useUserDetails";
@@ -11,7 +10,17 @@ function UserProfileForm() {
     const { userDetailsData, userDetailsLoading } = useUserDetails();
 
     // Handle form states
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        cardNumber: '',
+        exDate: '',
+        cvc: '',
+        zip: '',
+    });
+    
     // Handle error states
     const [formErrors, setFormErrors] = useState({
         firstName: false,
@@ -48,13 +57,18 @@ function UserProfileForm() {
                 zip,
             });
         }
-        // console.log(formData)
     }, [userDetailsData]);
 
     const username = JSON.parse(localStorage.getItem("username"));
 
     const handleSave = () => {
-        editUserDetails(username, formData);
+        const formattedData = {
+            ...formData,
+            phone: parseInt(formData.phone, 10), 
+            cvc: parseInt(formData.cvc, 10), 
+            cardNumber: parseInt(formData.cardNumber, 10)
+        };
+        editUserDetails(username, formattedData);
     };
 
     if (userDetailsData) {
@@ -110,7 +124,7 @@ function UserProfileForm() {
                     />
                     <UserInput
                         inputHeader="Phone Number"
-                        type="text"
+                        type="number"
                         placeholder="416-123-1234"
                         value={formData.phone}
                         onChange={(e) =>
@@ -122,7 +136,7 @@ function UserProfileForm() {
                 <VStack gap="1">
                     <UserInput
                         inputHeader="Card Number"
-                        type="text"
+                        type="number"
                         placeholder="1234-1234-1234-1234"
                         value={formData.cardNumber}
                         onChange={(e) =>

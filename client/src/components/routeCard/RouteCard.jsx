@@ -28,7 +28,6 @@ function RouteCard({
         2: trainIcon,
         3: busIcon,
     };
-    console.log(routeHeadsign)
     return (
         <Card
             onClick={onClick}

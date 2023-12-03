@@ -15,27 +15,13 @@ model user {
   username   String   @db.VarChar(40)
   password   String   @db.VarChar(255)
   email      String?  @db.VarChar(255)
-  firstName  String?  @map("first_name") @db.VarChar(255)
-  lastName   String?  @map("last_name") @db.VarChar(255)
-  phone      Int      @db.Int()
-  cardNumber Int      @map("card_number") @db.Int()
-  exDate     String   @db.VarChar(5)
-  cvc        Int      @db.Int()
-  zip        String   @db.VarChar(6)
-}
-
-model userData {
-  id          String  @id @db.Char(36)
-  username    String? @db.VarChar(40)
-  password    String? @db.VarChar(255)
-  email       String? @db.VarChar(255)
-  first_name  String? @db.VarChar(255)
-  last_name   String? @db.VarChar(255)
-  phone       String? @db.VarChar(30)
-  card_number String? @db.VarChar(25)
-  ex_date     String? @db.VarChar(5)
-  cvc         String? @db.VarChar(3)
-  zip         String? @db.VarChar(6)
+  firstName  String?  @db.VarChar(255)
+  lastName   String?  @db.VarChar(255)
+  phone      Int?     @db.Int()
+  cardNumber Int?     @db.Int()
+  exDate     String?  @db.VarChar(5)
+  cvc        Int?     @db.Int()
+  zip        String?  @db.VarChar(6)
 }
 
 model userSavedRoutes {
