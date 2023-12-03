@@ -16,9 +16,6 @@ https://rora.vercel.app/
 
 ### Login:
 
--   Username: SobczakL
--   Password: password
-
 Please ensure your location services are turned on into order to use the application properly.
 
 ## Screenshots
