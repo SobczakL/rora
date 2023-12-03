@@ -28,6 +28,7 @@ function RouteCard({
         2: trainIcon,
         3: busIcon,
     };
+    console.log(routeHeadsign)
     return (
         <Card
             onClick={onClick}
@@ -63,7 +64,9 @@ function RouteCard({
                         fontSize="fs.subheader"
                         lineHeight="lh.subheader"
                     >
-                        {`${routeNumber} `}
+                        {`${routeNumber} 
+                        ${routeHeadsign}
+                        `}
                     </Heading>
                 </CardHeader>
                 <CardBody p="0">
