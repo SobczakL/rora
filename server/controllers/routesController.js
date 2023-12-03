@@ -175,7 +175,7 @@ exports.getSavedRoutes = async (req, res) => {
     const { username } = req.body;
 
     try {
-        const routes = await prisma.user.findMany({
+        const routes = await prisma.userSavedRoutes.findMany({
             where: {
                 username: username,
             },

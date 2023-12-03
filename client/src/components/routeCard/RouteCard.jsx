@@ -63,9 +63,7 @@ function RouteCard({
                         fontSize="fs.subheader"
                         lineHeight="lh.subheader"
                     >
-                        {`${routeNumber} ${trimDirectionHeading(
-                            routeHeadsign
-                        )}`}
+                        {`${routeNumber} `}
                     </Heading>
                 </CardHeader>
                 <CardBody p="0">
