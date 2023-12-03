@@ -10,12 +10,14 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-const userRoutes = require("./routes/userRoutes");
-const transitRoutesRoutes = require("./routes/transitRoutesRoutes");
+const loginDetails = require("./routes/loginDetails");
+const userDetails = require("./routes/userDetails");
+const transitRoutes = require("./routes/transitRoutes");
 
 // Redirect incoming calls
-app.use("/login", userRoutes);
-app.use("/home", transitRoutesRoutes);
+app.use("/login", loginDetails);
+app.use("/user", userDetails);
+app.use("/home", transitRoutes);
 
 // Handle undefined route
 app.use((req, res, next) => {

@@ -3,7 +3,7 @@ import { serverURL } from "./config";
 
 export function editUserDetails(username, data) {
     axios
-        .post(`${serverURL}/login/editUserDetails`, {
+        .post(`${serverURL}/user/editUserDetails`, {
             username: username,
             data: data,
         })

@@ -1,4 +1,4 @@
-import { Divider, Flex, FormControl, VStack, Img, Box } from "@chakra-ui/react";
+import { Divider, Flex, FormControl, VStack, Box } from "@chakra-ui/react";
 import UserInput from "../input/UserInput";
 import ChangePassButton from "../button/ChangePassButton";
 import RoraCard from "../../../assets/images/roraCard.svg";
@@ -48,6 +48,7 @@ function UserProfileForm() {
                 zip,
             });
         }
+        // console.log(formData)
     }, [userDetailsData]);
 
     const username = JSON.parse(localStorage.getItem("username"));
@@ -116,7 +117,6 @@ function UserProfileForm() {
                             setFormData({ ...formData, phone: e.target.value })
                         }
                     />
-                    <ChangePassButton />
                 </VStack>
                 <Divider borderColor="darkNavy" m="16px" />
                 <VStack gap="1">
