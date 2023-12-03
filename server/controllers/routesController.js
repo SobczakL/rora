@@ -1,4 +1,11 @@
+const prisma = require('../lib/prisma');
 const axios = require("axios");
+
+/*
+    SECTION 1: Transit routes
+        - external fetch to data provider to return nearby transit info and
+        allow user to querry by search input.
+*/
 
 //limit stop processing to manage api rate limit
 const max_stop_size = 3;
@@ -129,4 +136,129 @@ exports.searchRoutes = (req, res) => {
         .catch((error) => {
             res.status(500).send(error);
         });
+};
+
+/*
+    SECTION 2: Route Details
+        - Return in-depth details of transit route selected by user from
+        external transit data provider.
+*/
+
+// const bool = true;
+
+exports.routeDetails = (req, res) => {
+    const id = req.params.id;
+    return axios
+        .get(
+            `https://external.transitapp.com/v3/public/route_details?global_route_id=${id}&include_next_departure=true`,
+            {
+                headers: {
+                    apiKey:
+                        process.env.LOCAL_TRANSIT_API_KEY,
+                },
+            }
+        )
+        .then((response) => {
+            res.status(200).json(response.data);
+        })
+        .catch((err) => {
+            res.status(500).send(err);
+        });
+};
+
+/* 
+    SECTION 3: Saved Routes
+    - Save routes to database for future use and retrieval.
+*/
+
+exports.getSavedRoutes = async (req, res) => {
+    const { username } = req.body;
+
+    try {
+        const routes = await prisma.userSavedRoutes.findMany({
+            where: {
+                username: username,
+            },
+        });
+
+        if (routes.length === 0) {
+            res.status(404).send("No saved routes found for the user.");
+        } else {
+            res.status(200).json(routes);
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
+};
+
+exports.checkSavedRoutes = async (req, res) => {
+    const { username, routeId } = req.body;
+
+    try {
+        const route = await prisma.userSavedRoutes.findMany({
+            where: {
+                username: username,
+                routeId: routeId,
+            },
+        });
+
+        if (!route) {
+            res.status(404).send("No saved routes found for the user.");
+        } else {
+            res.status(200).json(route);
+        }
+    } catch (err) {
+        res.status(500).send(err);
+        console.log(err);
+    }
+};
+
+exports.addSavedRoutes = async (req, res) => {
+    const {
+        username,
+        routeNumber,
+        routeName,
+        routeHeading,
+        routeId,
+        routeType,
+    } = req.body;
+
+    try {
+        const newRoute = await prisma.userSavedRoutes.create({
+            data: {
+                id: uuidv4(),
+                username: username,
+                routeNumber: routeNumber,
+                routeName: routeName,
+                routeHeading: routeHeading,
+                routeId: routeId,
+                routeType: routeType,
+            },
+        });
+
+        res.status(201).send("Route saved");
+    } catch (err) {
+        res.status(500).send(err);
+    }
+};
+
+exports.deleteSavedRoutes = async (req, res) => {
+    const { username, routeId } = req.body;
+
+    try {
+        const deletedRoute = await prisma.userSavedRoutes.deleteMany({
+            where: {
+                username: username,
+                routeId: routeId,
+            },
+        });
+
+        if (deletedRoute.count === 0) {
+            res.status(404).send("Route not found");
+        } else {
+            res.status(200).send("Route deleted");
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
 };

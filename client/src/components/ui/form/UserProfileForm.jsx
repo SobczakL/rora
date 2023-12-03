@@ -1,6 +1,5 @@
-import { Divider, Flex, FormControl, VStack, Img, Box } from "@chakra-ui/react";
+import { Divider, Flex, FormControl, VStack, Box } from "@chakra-ui/react";
 import UserInput from "../input/UserInput";
-import ChangePassButton from "../button/ChangePassButton";
 import RoraCard from "../../../assets/images/roraCard.svg";
 import SaveButton from "../button/SaveButton";
 import useUserDetails from "../../../services/useUserDetails";
@@ -11,15 +10,25 @@ function UserProfileForm() {
     const { userDetailsData, userDetailsLoading } = useUserDetails();
 
     // Handle form states
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        cardNumber: '',
+        exDate: '',
+        cvc: '',
+        zip: '',
+    });
+    
     // Handle error states
     const [formErrors, setFormErrors] = useState({
-        first_name: false,
-        last_name: false,
+        firstName: false,
+        lastName: false,
         email: false,
         phone: false,
-        card_number: false,
-        ex_date: false,
+        cardNumber: false,
+        exDate: false,
         cvc: false,
         zip: false,
     });
@@ -27,23 +36,23 @@ function UserProfileForm() {
     useEffect(() => {
         if (userDetailsData) {
             const {
-                first_name,
-                last_name,
+                firstName,
+                lastName,
                 email,
                 phone,
-                card_number,
-                ex_date,
+                cardNumber,
+                exDate,
                 cvc,
                 zip,
             } = userDetailsData[0];
 
             setFormData({
-                first_name,
-                last_name,
+                firstName,
+                lastName,
                 email,
                 phone,
-                card_number,
-                ex_date,
+                cardNumber,
+                exDate,
                 cvc,
                 zip,
             });
@@ -53,7 +62,13 @@ function UserProfileForm() {
     const username = JSON.parse(localStorage.getItem("username"));
 
     const handleSave = () => {
-        editUserDetails(username, formData);
+        const formattedData = {
+            ...formData,
+            phone: parseInt(formData.phone, 10), 
+            cvc: parseInt(formData.cvc, 10), 
+            cardNumber: parseInt(formData.cardNumber, 10)
+        };
+        editUserDetails(username, formattedData);
     };
 
     if (userDetailsData) {
@@ -77,7 +92,7 @@ function UserProfileForm() {
                             inputHeader="First Name:"
                             type="text"
                             placeholder="John"
-                            value={formData.first_name}
+                            value={formData.firstName}
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,
@@ -89,11 +104,11 @@ function UserProfileForm() {
                             inputHeader="Last Name:"
                             type="text"
                             placeholder="Doe"
-                            value={formData.last_name}
+                            value={formData.lastName}
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,
-                                    LastName: e.target.value,
+                                    lastName: e.target.value,
                                 })
                             }
                         />
@@ -109,22 +124,21 @@ function UserProfileForm() {
                     />
                     <UserInput
                         inputHeader="Phone Number"
-                        type="text"
+                        type="number"
                         placeholder="416-123-1234"
                         value={formData.phone}
                         onChange={(e) =>
                             setFormData({ ...formData, phone: e.target.value })
                         }
                     />
-                    <ChangePassButton />
                 </VStack>
                 <Divider borderColor="darkNavy" m="16px" />
                 <VStack gap="1">
                     <UserInput
                         inputHeader="Card Number"
-                        type="text"
+                        type="number"
                         placeholder="1234-1234-1234-1234"
-                        value={formData.card_number}
+                        value={formData.cardNumber}
                         onChange={(e) =>
                             setFormData({
                                 ...formData,
@@ -137,7 +151,7 @@ function UserProfileForm() {
                             inputHeader="Ex. Date"
                             type="text"
                             placeholder="01/01"
-                            value={formData.ex_date}
+                            value={formData.exDate}
                             onChange={(e) =>
                                 setFormData({
                                     ...formData,

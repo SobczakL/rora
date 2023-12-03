@@ -1,12 +1,11 @@
-import { Flex, Img, useDisclosure} from "@chakra-ui/react";
+import { Flex, Img } from "@chakra-ui/react";
 import roraLogo from "../../assets/logo/rora-main.svg";
 import LoginForm from "../../components/ui/form/LoginForm";
 import { useNavigate } from "react-router-dom";
 import useLocation from "../../utils/useLocation";
 import { useDelayedValue } from "../../utils/useDelayedValue"
-import LoginModal from "../../components/ui/modal/NewUserModal";
 import TestUserButton from "../../components/ui/button/TestUserButton";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NewUserModal from "../../components/ui/modal/NewUserModal";
 
 function Login() {
@@ -28,14 +27,8 @@ function Login() {
     //New user test account details launch
     const [newUserDetails, SetNewUserDetails] = useState(delay);
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    
     const handleNewUserClick = () =>{
-        // if(newUserDetails === true){
-        //     return <NewUserModal isOpen={isOpen} onClose={onClose} />
-        // }
         SetNewUserDetails(!newUserDetails);
-        // console.log(newUserDetails)
     }
 
     return (

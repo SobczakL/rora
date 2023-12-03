@@ -7,11 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node seed/seed.js",
     "start": "npm run seed && node index.js",
-    "dev": "npx nodemon index.js"
+    "dev": "npx nodemon index.js",
+    "build": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "author": "SobczakL",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.5.2",
     "axios": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -21,5 +24,8 @@
     "mysql2": "^3.3.3",
     "nodemon": "^2.0.22",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.5.2"
   }
 }

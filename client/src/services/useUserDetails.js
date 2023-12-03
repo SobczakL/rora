@@ -12,7 +12,7 @@ function useUserDetails() {
     useEffect(() => {
         setUserDetailsLoading(true);
         axios
-            .post(`${serverURL}/login/userDetails`, {
+            .post(`${serverURL}/user/userDetails`, {
                 username: username,
             })
             .then((response) => {
