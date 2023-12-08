@@ -1,6 +1,6 @@
 # RORA
 
-Rora is an all-in-one transit app, allowing users access to on-time transit scheduling, community engagement, and payment processing (TBD).
+Rora is an all-in-one transit app, allows users access to on-time transit scheduling, community engagement, and payment processing (TBD).
 
 https://rora.vercel.app/
 ---
@@ -16,7 +16,7 @@ https://rora.vercel.app/
 
 ### Login:
 
-Please ensure your location services are turned on into order to use the application properly.
+Please ensure your location services are turned on to use the application properly. New users may choose to use the credentials in the new user modal to login.
 
 ## Screenshots
 ![Rora login page](https://github.com/SobczakL/rora/assets/36972429/d7c7e031-6fdf-4ead-834c-5a430baee9b1)
