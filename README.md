@@ -16,7 +16,7 @@ https://rora.vercel.app/
 
 ### Login:
 
-Please ensure your location services are turned on to use the application properly. New users may choose to use the credentials in the new user modal to log in.
+Please ensure your location services are turned on to use the application. New users may choose to use the credentials in the new user modal to log in.
 
 ## Screenshots
 ![Rora login page](https://github.com/SobczakL/rora/assets/36972429/d7c7e031-6fdf-4ead-834c-5a430baee9b1)
