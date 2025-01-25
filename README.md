@@ -1,5 +1,7 @@
 # RORA
 
+** NOTE: ** This application is currently deprecated since both planetScale and the data provider wants to charge me money. I promise this was a really cool project.
+
 Rora is an all-in-one transit app, which allows users access to on-time transit scheduling, community engagement, and payment processing (TBD).
 
 https://rora.vercel.app/
