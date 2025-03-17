@@ -8,7 +8,7 @@ https://rora.vercel.app/
 
 ---
 ## Demo
-[![Watch the Rora Demo](https://cdn.loom.com/v1/poster/ffad2b617a474932b716e97dae7e6907.gif)](https://www.loom.com/share/ffad2b617a474932b716e97dae7e6907)
+![Watch the Rora Demo](https://www.loom.com/share/ffad2b617a474932b716e97dae7e6907)
 ---
 
 ## Usage:
